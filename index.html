@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Eddie</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="navbar">
+    <h1 class="site-title">Eddie Zhang</h1>
+    <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+      <a href="academics.html">Academics</a>
+      <a href="sports.html">Sports</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+
+  <main class="hero-section">
+    <div class="hero-image">
+      <img src="images/M1.jpeg" alt="Eddie Zhang与猫的合影" />
+    </div>
+    <div class="hero-text">
+      <h1>Hello, I’m Eddie Zhang</h1>
+      <p>A student, athlete, innovator and global citizen with a passion for excellence.</p>
+      <a href="about.html" class="cta-button">Discover My Story</a>
+    </div>
+  </main>
+
+  <section class="cards">
+    <div class="card">
+      <h2>Basketball Action</h2>
+      <p class="highlight">Athletics & Discipline</p>
+      <p>Over 10 years of basketball training. From local courts to national competitions, I thrive on teamwork and tenacity.</p>
+      <a href="sports.html" class="more-button">More</a>
+    </div>
+    <div class="card">
+      <h2>Robotics Champion</h2>
+      <p class="highlight">Technology & Leadership</p>
+      <p>Captain of Asia-Pacific Champion robotics team. Leading innovation with code and collaboration.</p>
+      <a href="academics.html" class="more-button">More</a>
+    </div>
+    <div class="card">
+      <h2>UBC Summer Campus</h2>
+      <p class="highlight">Explorer of the World</p>
+      <p>Traveled across China, U.S., New Zealand, Canada — even on crutches. Curiosity is my compass.</p>
+      <a href="about.html" class="more-button">More</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
+  </footer>
+  <script>
+    // 页脚年份自动更新
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
