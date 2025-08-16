@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Eddie Zhang</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="navbar">
+      <h1 class="site-title">Eddie Zhang</h1>
+      <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+    <main class="main-content">
+      <h2>Photo Gallery</h2>
+      <div class="cards">
+        <div class="card">
+          <img src="images/gallery-basketball.jpg" alt="Basketball game" style="width:100%;border-radius:8px;">
+          <p class="highlight">Basketball Highlights</p>
+          <p>Competing as team captain during the regional finals.</p>
+        </div>
+        <div class="card">
+          <img src="images/gallery-robotics.jpg" alt="Robotics competition" style="width:100%;border-radius:8px;">
+          <p class="highlight">Robotics Competition</p>
+          <p>Celebrating a win at the Asia-Pacific Robotics Championships.</p>
+        </div>
+        <div class="card">
+          <img src="images/gallery-ubc.jpg" alt="UBC Campus" style="width:100%;border-radius:8px;">
+          <p class="highlight">UBC Summer Program</p>
+          <p>Exploring the beautiful University of British Columbia campus in Canada.</p>
+        </div>
+        <div class="card">
+          <img src="images/gallery-volunteer.jpg" alt="Volunteering" style="width:100%;border-radius:8px;">
+          <p class="highlight">Community Service</p>
+          <p>Volunteering at a local environmental cleanup event.</p>
+        </div>
+        <div class="card">
+          <img src="images/gallery-travel.jpg" alt="Travel Adventure" style="width:100%;border-radius:8px;">
+          <p class="highlight">Travel Adventures</p>
+          <p>Visiting iconic landmarks across China, New Zealand, and the US.</p>
+        </div>
+        <div class="card">
+          <img src="images/gallery-friends.jpg" alt="With Friends" style="width:100%;border-radius:8px;">
+          <p class="highlight">With Friends</p>
+          <p>Building lasting friendships through sports, study, and travel.</p>
+        </div>
+      </div>
+      <p style="text-align:center; color:#888; margin-top:1.5rem;">* All gallery images are placeholders. Replace with real photos for best results.</p>
+    </main>
+  </div>
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

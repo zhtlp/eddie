@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eddie Zhang | Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="navbar">
+      <h1 class="site-title">Eddie Zhang</h1>
+      <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
+      <nav class="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+    <main class="main-content">
+      <h2>Welcome</h2>
+      <div class="hero-mix">
+        <div class="hero-image">
+          <img src="images/M1.jpeg" alt="Eddie Zhang with cat" class="hero-main-image"/>
+        </div>
+        <div class="hero-text">
+          <h1>Hello, I'm Eddie Zhang</h1>
+          <p>
+            Student, athlete, innovator, and global citizen with a passion for excellence. I see every challenge as an opportunity to grow and strive to surpass expectations. Whether on the basketball court, leading a robotics team, or exploring new cultures, I bring dedication, creativity, and heart into everything I do.
+          </p>
+          <a href="profile.html" class="cta-button">Discover My Story</a>
+        </div>
+      </div>
+      <section class="cards">
+        <div class="card">
+          <h2>Academic Excellence</h2>
+          <p class="highlight">Curiosity & Achievement</p>
+          <p>
+            Dedicated to lifelong learning, I have excelled in academics across multiple disciplines. My journey is marked by curiosity-driven research, problem solving, and a love for discovering new ideas.
+          </p>
+          <a href="achievements.html" class="more-button">More</a>
+        </div>
+        <div class="card">
+          <h2>Leadership & Projects</h2>
+          <p class="highlight">Innovation & Teamwork</p>
+          <p>
+            From captaining a robotics team to organizing community events, I thrive in leadership roles and collaborative environments. Every project is a new adventure in making a difference.
+          </p>
+          <a href="projects.html" class="more-button">More</a>
+        </div>
+        <div class="card">
+          <h2>Athletic Spirit</h2>
+          <p class="highlight">Sportsmanship & Resilience</p>
+          <p>
+            Over a decade of basketball training and competitions have taught me grit, discipline, and the power of teamwork. I bring the same determination to all areas of my life.
+          </p>
+          <a href="achievements.html#sports" class="more-button">More</a>
+        </div>
+        <div class="card">
+          <h2>Global Explorer</h2>
+          <p class="highlight">Perspective & Growth</p>
+          <p>
+            My travels across China, the U.S., New Zealand, and Canada have broadened my horizons. I believe meaningful experiences and diverse perspectives spark empathy and ambition.
+          </p>
+          <a href="gallery.html" class="more-button">More</a>
+        </div>
+      </section>
+    </main>
+  </div>
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

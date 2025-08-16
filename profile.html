@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Eddie Zhang</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="navbar">
+      <h1 class="site-title">Eddie Zhang</h1>
+      <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="profile.html" class="active">Profile</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+    <main class="main-content">
+      <h2>About Me</h2>
+      <div class="hero-mix">
+        <div class="hero-image">
+          <img src="images/profile-placeholder.jpg" alt="Eddie Zhang portrait" class="hero-main-image"/>
+        </div>
+        <div class="hero-text">
+          <h1>Eddie Zhang</h1>
+          <p>
+            Hi! I’m Eddie Zhang, a passionate learner and active explorer. From my earliest days, I’ve been driven by curiosity and a desire to discover how the world works—whether through science, sports, or creative projects. I believe in challenging myself, learning from setbacks, and making a positive impact on those around me.
+          </p>
+          <ul>
+            <li><strong>Birthday:</strong> January 18, 2007</li>
+            <li><strong>Nationality:</strong> Chinese</li>
+            <li><strong>Languages:</strong> English, Mandarin</li>
+            <li><strong>Current School:</strong> International High School, Shanghai</li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <section>
+        <h2>My Values</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Resilience</h3>
+            <p>
+              I embrace challenges and view setbacks as opportunities to grow. Whether recovering from an injury or facing a tough academic problem, I never give up easily.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Curiosity</h3>
+            <p>
+              I am always eager to ask questions, seek new experiences, and push the boundaries of my knowledge—be it through robotics, sports, or travel.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Teamwork</h3>
+            <p>
+              From basketball courts to robotics labs, I love collaborating with others. I believe great things are achieved together, not alone.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Empathy</h3>
+            <p>
+              I care deeply about my friends and community. Tutoring classmates, volunteering, and helping others solve problems are all important to me.
+            </p>
+          </div>
+        </div>
+      </section>
+      <hr>
+      <section>
+        <h2>Snapshot Gallery</h2>
+        <div class="cards">
+          <div class="card">
+            <img src="images/gallery-basketball.jpg" alt="Playing basketball" style="width:100%;border-radius:8px;">
+            <p class="highlight">Basketball Captain</p>
+            <p>Leading my team during regional championships.</p>
+          </div>
+          <div class="card">
+            <img src="images/gallery-robotics.jpg" alt="Robotics competition" style="width:100%;border-radius:8px;">
+            <p class="highlight">Robotics Champion</p>
+            <p>Celebrating with teammates at the Asia-Pacific Robotics Competition.</p>
+          </div>
+          <div class="card">
+            <img src="images/gallery-travel.jpg" alt="Travel abroad" style="width:100%;border-radius:8px;">
+            <p class="highlight">World Explorer</p>
+            <p>Exploring UBC campus in Canada, always eager to learn from new cultures.</p>
+          </div>
+        </div>
+        <p style="text-align:center; color:#888; margin-top:1rem;">* Photos are for illustration. Replace with real images for best effect.</p>
+      </section>
+    </main>
+  </div>
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

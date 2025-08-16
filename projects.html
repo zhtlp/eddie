@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Eddie Zhang</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="navbar">
+      <h1 class="site-title">Eddie Zhang</h1>
+      <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+    <main class="main-content">
+      <h2>Featured Projects</h2>
+      <section class="cards">
+        <div class="card">
+          <img src="images/project-robotics.jpg" alt="Robotics Project" style="width:100%;border-radius:8px;">
+          <h3>Autonomous Rescue Robot</h3>
+          <p class="highlight">Asia-Pacific Robotics Champion</p>
+          <p>
+            Designed and programmed a robot capable of navigating obstacle courses and performing rescue tasks. Led a team to win the Asia-Pacific Robotics Championship, focusing on teamwork, innovation, and real-world problem solving.
+          </p>
+        </div>
+        <div class="card">
+          <img src="images/project-app.jpg" alt="Mobile App" style="width:100%;border-radius:8px;">
+          <h3>Study Buddy App</h3>
+          <p class="highlight">Personal Project</p>
+          <p>
+            Developed a cross-platform mobile app to help students manage assignments, set study goals, and collaborate with peers. The app features a clean UI and helps students stay organized and motivated.
+          </p>
+        </div>
+        <div class="card">
+          <img src="images/project-eco.jpg" alt="Environmental Project" style="width:100%;border-radius:8px;">
+          <h3>Eco-School Initiative</h3>
+          <p class="highlight">Community Leadership</p>
+          <p>
+            Launched an eco-friendly program at school to reduce plastic waste. Organized recycling drives, workshops, and awareness campaigns, engaging students and teachers to create a greener campus.
+          </p>
+        </div>
+        <div class="card">
+          <img src="images/project-math.jpg" alt="Math Research" style="width:100%;border-radius:8px;">
+          <h3>Mathematical Research Paper</h3>
+          <p class="highlight">STEM Exploration</p>
+          <p>
+            Authored a research paper on number theory, exploring advanced problem-solving strategies used in mathematics olympiads. Presented findings at a school symposium and mentored junior students.
+          </p>
+        </div>
+      </section>
+      <p style="text-align:center; color:#888; margin-top:1.5rem;">* Images are placeholders. Replace with real project photos or screenshots for best effect.</p>
+    </main>
+  </div>
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
