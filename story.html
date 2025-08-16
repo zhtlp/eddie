@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Story: New Zealand Grit - Eddie Zhang</title>
+  <link rel="stylesheet" href="styles.css"/>
+
+  <style>
+    /* Overall story rhythm */
+    .story-lead {
+      font-size: 1.05rem;
+      color: #444;
+      line-height: 1.6;
+    }
+    .story-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    /* Alternating media/text sections: text wider than image for balance */
+    .story-section {
+      display: grid;
+      grid-template-columns: 3fr 2fr; /* text : image */
+      gap: 1.5rem;
+      align-items: start;
+    }
+    /* On even sections, keep image on the right but tuck it to the inner edge */
+    .story-section .story-media {
+      justify-self: start;  /* odd: image on left column, align left edge */
+      align-self: start;
+    }
+    .story-section:nth-of-type(even) .story-media {
+      order: 2;             /* even: move image after text (to the right column) */
+      justify-self: end;    /* align image to the right edge of its column */
+    }
+
+    /* Hero and section images: make them smaller, long edge <= 360px */
+    .hero-main-image,
+    .story-media img {
+      max-width: 360px;
+      max-height: 360px;
+      width: auto;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(163,31,52,0.08);
+    }
+
+    /* Captions: subtle and left-aligned to reduce visual pull */
+    .caption {
+      margin-top: 0.4rem;
+      font-size: 0.88rem;
+      color: #666;
+      text-align: left;
+    }
+
+    .pull-quote {
+      font-size: 1.02rem;
+      font-style: italic;
+      color: #7b1626;
+      border-left: 4px solid #A31F34;
+      padding-left: 1rem;
+      margin: 0.8rem 0 0.2rem;
+    }
+
+    /* Compact location grid */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+    .image-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(163,31,52,0.06);
+    }
+
+    .closing-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(163,31,52,0.06);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .closing-card p { margin: 0.4rem 0; color: #444; }
+    .back-links { text-align: center; margin-top: 1rem; }
+    .back-links a { text-decoration: none; color: #A31F34; font-weight: 600; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .story-section { grid-template-columns: 1.4fr 1fr; }
+    }
+    @media (max-width: 800px) {
+      .story-section { grid-template-columns: 1fr; }
+      .story-section:nth-of-type(even) .story-media { order: 0; justify-self: start; }
+      .hero-main-image,
+      .story-media img { max-width: 320px; max-height: 320px; }
+      .image-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .image-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="navbar">
+      <h1 class="site-title">Eddie Zhang</h1>
+      <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <h2>My Story: New Zealand Grit</h2>
+
+      <div class="hero-mix" style="margin-bottom: 1.2rem;">
+        <div class="hero-image">
+          <img
+            src="story/2018-53.jpg"
+            alt="A determined step forward during a journey in New Zealand"
+            class="hero-main-image"
+            loading="eager"
+          />
+        </div>
+        <div class="hero-text">
+          <h1>From a Break to a Breakthrough</h1>
+          <p class="story-lead">
+            On July 15, 2018, I broke my right tibia and fibula on the court. I cried in the ambulance:
+            “I’m sorry, Mom. We can’t go to New Zealand anymore.” Four hours later, I woke up with an
+            external fixator on my leg. I thought sports—and the life I loved—were over. But sometimes,
+            the road back begins the very moment you think it ends.
+          </p>
+        </div>
+      </div>
+
+      <div class="story-flow">
+        <!-- Section 1 -->
+        <section class="story-section" style="grid-template-columns: 1fr;">
+          <div>
+            <h3>The Fall</h3>
+            <p>
+              As I was dribbling and running, someone much older hit me. My right leg snapped—tibia and fibula fractured.
+              The ambulance siren blurred with my thoughts. In tears, I apologized to my mom about our planned trip.
+            </p>
+            <p class="pull-quote">“I’m sorry, Mom. We can’t go to New Zealand anymore.”</p>
+            <p>
+              Surgery took four hours. When I woke, metal framed my leg. For weeks, I dreamt I was back on the court,
+              running, getting knocked down—breaking my leg again. Each time, the same fear pulled me awake.
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section class="story-section">
+          <div>
+            <h3>The Turning Point</h3>
+            <p>
+              On September 29, the external fixator came off. Blood spurted from the screw holes—raw proof of how far
+              I still had to go. Then Mom said: “On October 4, we’re going to New Zealand.”
+            </p>
+            <p class="pull-quote">“Impossible,” I thought. “On crutches? In a wheelchair? How could that be?”</p>
+            <p>
+              And yet, on October 4, 2018, I boarded a flight to Auckland—on crutches. That decision didn’t just move me
+              across 10,000 kilometers; it moved something inside me back into motion.
+            </p>
+          </div>
+          <div class="story-media">
+            <div>
+              <img src="story/2018-76.jpg" alt="At the airport on crutches, ready to board for Auckland" loading="lazy"/>
+              <div class="caption">A promise turned into a boarding pass.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section class="story-section">
+          <div class="story-media">
+            <div>
+              <img src="story/2018-94.jpg" alt="Hobbiton round door—childhood wonder, adult resolve" loading="lazy"/>
+              <div class="caption">Hobbiton—childhood wonder, adult resolve.</div>
+            </div>
+          </div>
+          <div>
+            <h3>On Crutches, I Went Anyway</h3>
+            <ul class="journey-steps">
+              <li>I climbed Mount Eden.</li>
+              <li>I visited Hobbiton and stood at Bilbo Baggins’s door.</li>
+              <li>I watched the haka in Rotorua.</li>
+              <li>I saw the vast Milky Way over Lake Tekapo.</li>
+              <li>In Queenstown, at Kawarau Bridge Bungy, I promised I’d be back.</li>
+              <li>I reached Invercargill—the southernmost city I’d ever been.</li>
+            </ul>
+            <p>
+              The nightmare that haunted me quietly faded. The world felt big again. And I felt ready to grow into it.
+            </p>
+          </div>
+        </section>
+
+        <!-- Places grid (concise, de-emphasized) -->
+        <section>
+          <div class="image-grid">
+            <img src="story/2018-97.jpg" alt="Mount Eden lookout over Auckland" loading="lazy"/>
+            <img src="story/2018-92.jpg" alt="Hills and round doors at Hobbiton" loading="lazy"/>
+            <img src="story/2018-78.jpg" alt="Rotorua haka performance" loading="lazy"/>
+            <img src="story/2018-82.jpg" alt="Lake Tekapo starry sky and the Milky Way" loading="lazy"/>
+            <img src="story/2018-196.jpg" alt="Kawarau Bridge Bungy platform in Queenstown" loading="lazy"/>
+            <img src="story/2018-161.jpg" alt="Invercargill streetscape at the south" loading="lazy"/>
+          </div>
+          <p class="caption">New Zealand—where a journey became a turning point.</p>
+        </section>
+
+        <!-- Section 4 -->
+        <section class="story-section">
+          <div>
+            <h3>Back to the Court</h3>
+            <p>
+              I returned to the soccer field. I was still the key center on the basketball court. I fell—then stood up,
+              again and again. I grew stronger. Braver. Not defined by my injury, but by the strength I found through it.
+            </p>
+            <p class="pull-quote">I am ready to face every challenge ahead.</p>
+          </div>
+          <div class="story-media">
+            <div>
+              <img src="story/2019-31.jpg" alt="Back on the court—focused, composed, and ready" loading="lazy"/>
+              <div class="caption">Not the same as before—stronger.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Closing -->
+        <section class="closing-card">
+          <p class="highlight" style="margin: 0.2rem 0 0.6rem; color:#A31F34; font-weight:700;">Thank you for reading.</p>
+          <p>
+            This is not a story about loss. It’s a story about finding resolve, inch by inch, step by step—sometimes on crutches—
+            and choosing to move forward anyway.
+          </p>
+          <div class="back-links">
+            <a href="index.html">← Back to Home</a>
+            <span style="color:#bbb; margin: 0 0.4rem;">|</span>
+            <a href="profile.html">View Profile</a>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
