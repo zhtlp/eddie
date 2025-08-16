@@ -3,225 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Story: New Zealand Grit - Eddie Zhang</title>
+  <title>New Zealand Grit - Eddie Zhang</title>
   <link rel="stylesheet" href="styles.css"/>
 
   <style>
-    :root {
-      --brand: #A31F34;
-      --ink: #2c2c2c;
-      --muted: #666;
-      --paper: #ffffff;
-      --soft: rgba(163,31,52,0.08);
+    :root{
+      --brand:#A31F34;
+      --ink:#1f2328;
+      --muted:#60666d;
+      --paper:#ffffff;
+      --line:#ececef;
     }
 
-    /* Hero: full-bleed card with image overlay */
-    .hero {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.08);
-      margin-bottom: 1.4rem;
-      background: #111;
-      min-height: 340px;
-      display: grid;
-      place-items: end start;
-      isolation: isolate;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url("story/2018-53.jpg") center/cover no-repeat;
-      filter: saturate(1) contrast(1) brightness(0.95);
-      z-index: -2;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.45) 70%, rgba(0,0,0,0.65) 100%);
-      z-index: -1;
-    }
-    .hero__content {
-      color: #fff;
-      padding: 1.6rem 1.4rem;
-      max-width: 840px;
-    }
-    .hero__title {
-      margin: 0 0 0.4rem;
-      font-size: clamp(1.6rem, 3vw + 1rem, 2.4rem);
+    .essay-wrap{ max-width: 960px; margin: 0 auto; }
+
+    /* 简洁页面标题 */
+    .page-title{
+      margin: 0 0 .6rem;
+      font-size: clamp(1.4rem, 2.2vw + 1rem, 1.9rem);
       line-height: 1.15;
-      letter-spacing: 0.2px;
-    }
-    .hero__lead {
-      margin: 0.2rem 0 0;
-      font-size: clamp(1rem, 1vw + 0.8rem, 1.15rem);
-      line-height: 1.6;
-      color: #f0f0f0;
-    }
-
-    /* Story body: magazine-like typography */
-    .story {
-      color: var(--ink);
-      line-height: 1.7;
-      display: block;
-    }
-    .story h3 {
-      margin: 0.6rem 0 0.3rem;
-      font-size: 1.25rem;
-      color: var(--brand);
-      letter-spacing: 0.2px;
-    }
-    .dropcap::first-letter {
-      float: left;
-      font-size: 3.2rem;
-      line-height: 0.8;
-      padding-right: 0.4rem;
-      padding-top: 0.15rem;
-      font-weight: 700;
+      letter-spacing: .2px;
       color: var(--brand);
     }
 
-    /* Real text-wrapping around circular images */
-    figure.float {
-      margin: 0.3rem 1rem 0.6rem;
+    /* 明亮装饰横幅（无覆盖文字） */
+    .cover{
+      position: relative;
+      height: clamp(180px, 26vw, 240px);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,.05);
+      background: #fff;
     }
-    figure.float img {
-      width: 260px;
-      height: 260px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
-      display: block;
+    .cover::before{
+      content:"";
+      position:absolute; inset:0;
+      background: url("story/2018-92.jpg") center/cover no-repeat;
+      filter: brightness(1.06) contrast(1.02) saturate(1.02);
     }
-    figure.float-left {
-      float: left;
-      shape-outside: circle(50%);
-    }
-    figure.float-right {
-      float: right;
-      shape-outside: circle(50%);
-    }
-    figcaption {
-      font-size: 0.86rem;
-      color: var(--muted);
-      margin-top: 0.35rem;
-      text-align: center;
+    .cover::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.85) 0%, rgba(255,255,255,0) 28%, rgba(255,255,255,0) 72%, rgba(255,255,255,.88) 100%);
+      pointer-events: none;
     }
 
-    /* Pull-quote */
-    .pull {
-      margin: 0.6rem 0;
-      padding: 0.6rem 0.9rem;
+    /* 正文 */
+    .essay{ color: var(--ink); font-size: 1.03rem; line-height: 1.75; }
+    .essay p{ margin: .6rem 0; }
+    .quote{
+      margin: .7rem 0; padding: .6rem .8rem;
       border-left: 4px solid var(--brand);
-      background: #faf6f7;
-      color: #7b1626;
-      font-style: italic;
+      background: #faf6f7; color: #7b1626; font-style: italic;
     }
+    .dots{ letter-spacing: .12em; color: #999; user-select: none; }
 
-    .divider {
+    /* 图文混排：矩形、适中大小，左右交错 */
+    .fig{
+      width: min(40%, 360px);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+      margin: .35rem 1rem .6rem;
+    }
+    .fig img{ width: 100%; display: block; height: auto; object-fit: cover; }
+    .fig-left{ float: left; }
+    .fig-right{ float: right; }
+    .fig-cap{ font-size: .88rem; color: var(--muted); padding: .35rem .55rem .45rem; }
+
+    .divider{
       height: 1px;
       background: linear-gradient(to right, rgba(163,31,52,0.28), rgba(163,31,52,0.08), transparent);
-      margin: 1rem 0 0.6rem;
+      margin: 1rem 0 .6rem;
+      border-radius: 2px;
+      clear: both;
+    }
+
+    /* 新增：章节分隔（画廊标题胶囊 + 渐变细线） */
+    .section-sep{
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin: 1.2rem 0 .75rem;
+      clear: both; /* 确保不被上方浮动影响 */
+    }
+    .section-sep::before,
+    .section-sep::after{
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(163,31,52,0.28), rgba(163,31,52,0.08), transparent);
       border-radius: 2px;
     }
-
-    /* Vertical timeline (subtle, replaces the 3 badges) */
-    .timeline {
-      margin: 0.6rem 0 0.2rem;
-      padding-left: 1rem;
-      border-left: 3px solid rgba(163,31,52,0.20);
+    .section-sep::after{
+      background: linear-gradient(to left, rgba(163,31,52,0.28), rgba(163,31,52,0.08), transparent);
     }
-    .timeline li {
-      list-style: none;
-      margin: 0.5rem 0 0.5rem 0;
-      padding-left: 0.6rem;
-      position: relative;
-    }
-    .timeline li::before {
-      content: "";
-      position: absolute;
-      left: -0.58rem;
-      top: 0.45rem;
-      width: 10px; height: 10px;
-      background: var(--brand);
-      border-radius: 50%;
-      box-shadow: 0 0 0 3px rgba(163,31,52,0.15);
-    }
-    .timeline .when {
-      font-weight: 700;
+    .section-sep .label{
+      display: inline-block;
+      padding: .2rem .65rem;
+      border-radius: 999px;
+      border: 1px solid #f0e6e8;
+      background: #fff;
       color: var(--brand);
-      margin-right: 0.35rem;
+      font-weight: 600;
+      font-size: .92rem;
+      letter-spacing: .2px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.04);
+      white-space: nowrap;
     }
 
-    /* Compact image grid */
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
-      margin-top: 0.6rem;
-    }
-    .image-grid img {
-      width: 100%;
-      height: 100%;
-      max-height: 220px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    }
-    .grid-caption {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-top: 0.35rem;
-      text-align: left;
-    }
-
-    /* Full-width section image (comeback) */
-    .wide {
-      margin: 1rem 0 0.2rem;
+    /* 底部图片长廊 */
+    .gallery{
+      margin-top: .6rem;
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
     }
-    .wide img {
-      width: 100%;
-      height: clamp(220px, 42vw, 420px);
-      object-fit: cover;
+    .gallery-grid{
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+    }
+    .gallery-grid img{
+      width: 100%; display: block;
+      aspect-ratio: 4 / 3;
+      object-fit: cover; object-position: center;
+      transition: transform .22s ease, filter .22s ease;
+      cursor: zoom-in; /* 可点击预览 */
+    }
+    .gallery-grid img:hover{
+      transform: scale(1.02);
+      filter: saturate(1.05) contrast(1.03);
+    }
+
+    .back-links{ text-align: center; margin-top: 1rem; }
+    .back-links a{ text-decoration: none; color: var(--brand); font-weight: 600; }
+    .back-links span{ color:#bbb; margin: 0 .4rem; }
+
+    /* 轻量 Lightbox */
+    .lightbox{
+      position: fixed; inset: 0;
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 1.2rem;
+      background: rgba(10,10,12,.72);
+      backdrop-filter: blur(2px);
+      z-index: 1000;
+    }
+    .lightbox.open{ display: flex; }
+    .lightbox img{
+      width: auto; height: auto;
+      max-width: min(92vw, 1400px);
+      max-height: 88vh;
       display: block;
+      border-radius: 10px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.40);
+      cursor: zoom-out; /* 再点一次关闭 */
     }
+    .lb-close{
+      position: absolute; top: 14px; right: 16px;
+      background: #fff; color: #222; border: 0;
+      border-radius: 999px; width: 34px; height: 34px;
+      display: grid; place-items: center; cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,.25);
+    }
+    body.no-scroll{ overflow: hidden; }
 
-    /* Closing card */
-    .closing {
-      background: var(--paper);
-      border-radius: 14px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      padding: 1rem 1rem;
-      text-align: center;
-      margin-top: 0.8rem;
+    /* 响应式 */
+    @media (max-width: 900px){
+      .fig{ width: min(48%, 340px); }
+      .gallery-grid{ grid-template-columns: repeat(3, 1fr); }
     }
-    .closing p { margin: 0.35rem 0; color: #444; }
-    .back-links { text-align: center; margin-top: 0.6rem; }
-    .back-links a { text-decoration: none; color: var(--brand); font-weight: 600; }
-
-    /* Responsive */
-    @media (max-width: 980px) {
-      figure.float img { width: 220px; height: 220px; }
-    }
-    @media (max-width: 760px) {
-      .hero { min-height: 300px; }
-      figure.float, figure.float-left, figure.float-right {
-        float: none;
-        shape-outside: none;
-        margin: 0.6rem auto;
-        text-align: center;
+    @media (max-width: 680px){
+      .fig, .fig-left, .fig-right{
+        float: none; margin: .6rem auto; width: min(86%, 360px);
       }
-      figure.float img { width: 280px; height: 280px; }
-      .image-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
     }
-    @media (max-width: 480px) {
-      figure.float img { width: 240px; height: 240px; }
-      .image-grid { grid-template-columns: 1fr; }
+    @media (max-width: 420px){
+      .gallery-grid{ grid-template-columns: 1fr; }
+    }
+
+    /* 打印优化 */
+    @media print{
+      .navbar{ display: none !important; }
+      .cover{ box-shadow: none; border: 0; }
+      .cover::before, .cover::after{ display: none; }
+      .gallery-grid img{ filter: grayscale(100%); }
+      .back-links a{ color: #000 !important; text-decoration: underline; }
+      .lightbox{ display: none !important; }
     }
   </style>
 </head>
@@ -241,111 +213,162 @@
     </header>
 
     <main class="main-content">
-      <h2>My Story: New Zealand Grit</h2>
+      <div class="essay-wrap">
+        <h2 class="page-title">New Zealand Grit</h2>
+        <section class="cover" aria-hidden="true"></section>
 
-      <!-- HERO -->
-      <section class="hero">
-        <div class="hero__content">
-          <h1 class="hero__title">From a Break to a Breakthrough</h1>
-          <p class="hero__lead">
-            July 15, 2018. I broke my right tibia and fibula on the court. In the ambulance, I cried:
-            “I’m sorry, Mom. We can’t go to New Zealand anymore.” Four hours later, I woke up to an external
-            fixator on my leg—and a fear that the life of sports I loved had ended. It hadn’t. It was just changing.
-          </p>
-        </div>
-      </section>
+        <!-- 正文（保持不变） -->
+        <article class="essay">
+          <p>I broke my leg when I was running with the ball on the court.</p>
 
-      <!-- STORY BODY -->
-      <article class="story">
-        <h3>The Fall</h3>
-        <p class="dropcap">
-          As I was dribbling and running, someone much older hit me. My right leg snapped—tibia and fibula fractured.
-          For weeks, I dreamt I was back on the court, running, being knocked down, breaking my leg. Being knocked down,
-          and breaking my leg. Those dreams woke me again and again. I sat in a wheelchair, wondering if I would ever
-          play sports again.
-        </p>
-        <p class="pull">“I’m sorry, Mom. We can’t go to New Zealand anymore.”</p>
-
-        <div class="divider"></div>
-
-        <h3>The Turning Point</h3>
-        <figure class="float float-right">
-          <img src="story/2018-76.jpg" alt="At the airport on crutches, ready to board for Auckland"/>
-          <figcaption>A promise became a boarding pass.</figcaption>
-        </figure>
-        <p>
-          On September 29, 2018, the external fixator came off. Blood spurted from the screw holes—raw proof that healing
-          is messy and real. Then Mom said: “On October 4, we’re going to New Zealand.”
-        </p>
-        <p class="pull">“Impossible. How could I? On crutches, in a wheelchair… to New Zealand?”</p>
-        <p>
-          And yet, on October 4, 2018, I boarded the flight to Auckland—on crutches. That choice didn’t just move me across
-          10,000 kilometers; it moved something inside me back into motion.
-        </p>
-
-        <div class="divider"></div>
-
-        <h3>On Crutches, I Went Anyway</h3>
-        <figure class="float float-left">
-          <img src="story/2018-94.jpg" alt="Hobbiton—round green door symbolizing wonder and resolve"/>
-          <figcaption>Hobbiton—childhood wonder, adult resolve.</figcaption>
-        </figure>
-
-        <ul class="timeline">
-          <li><span class="when">Mount Eden</span>On crutches, I climbed to the lookout.</li>
-          <li><span class="when">Hobbiton</span>I stood at Bilbo Baggins’s door.</li>
-          <li><span class="when">Rotorua</span>I watched the haka—strength in rhythm.</li>
-          <li><span class="when">Lake Tekapo</span>I saw the vast Milky Way.</li>
-          <li><span class="when">Queenstown</span>At Kawarau Bridge Bungy, I promised: I’ll be back when I recover.</li>
-          <li><span class="when">Invercargill</span>The southernmost city I had ever been.</li>
-        </ul>
-        <p>
-          Somewhere between fear and the next step, the nightmare let go. The world felt big again. And I felt ready to grow into it.
-        </p>
-
-        <section>
-          <div class="image-grid">
-            <img src="story/2018-97.jpg" alt="Mount Eden lookout over Auckland"/>
-            <img src="story/2018-92.jpg" alt="Hills and round doors at Hobbiton"/>
-            <img src="story/2018-96.jpg" alt="Rotorua haka performance"/>
-            <img src="story/2018-78.jpg" alt="Lake Tekapo starry sky and the Milky Way"/>
-            <img src="story/2018-125.jpg" alt="Kawarau Bridge Bungy platform in Queenstown"/>
-            <img src="story/2018-161.jpg" alt="Invercargill streetscape at the south"/>
+          <div class="fig fig-right">
+            <img src="story/2018-76.jpg" alt="At the airport on crutches, ready to board for Auckland">
+            <div class="fig-cap">Auckland on crutches.</div>
           </div>
-          <p class="grid-caption">New Zealand—where a trip became a turning point.</p>
-        </section>
 
-        <div class="divider"></div>
+          <p>On July 15, 2018, it was a sunny afternoon. As I was dribbling and running, I was hit by someone much older than me. My right tibia and fibula were fractured.</p>
 
-        <h3>Back to the Court</h3>
-        <section class="wide">
-          <img src="story/2019-31.jpg" alt="Back on the court—focused, composed, and ready"/>
-        </section>
-        <p>
-          The nightmare never returned. I went back to the soccer field. I was still the key center on the basketball court.
-          I fell—then stood back up, again and again. I grew stronger. Braver. I am no longer defined by the injury I once suffered,
-          but by the strength I discovered through it.
-        </p>
-        <p class="pull">With that strength, I am ready to face every challenge ahead.</p>
+          <p class="quote">“I’m sorry, Mom. We can’t go to New Zealand anymore.”</p>
 
-        <section class="closing">
-          <p style="color:var(--brand); font-weight:700;">Thank you for reading.</p>
-          <p>
-            Not a story about loss, but about resolve—inch by inch, step by step, sometimes on crutches—choosing to move forward anyway.
-          </p>
-          <div class="back-links">
+          <p>We had originally planned our trip to New Zealand for August 1.</p>
+          <p>After four hours of surgery, when I woke up again, an external fixator had been placed on my leg.</p>
+          <p>I had always been such a child who loved life and loved sports— Swimming, tennis, basketball, soccer…</p>
+
+          <div class="fig fig-left">
+            <img src="story/2018-94.jpg" alt="Hobbiton round door — childhood wonder, adult resolve">
+            <div class="fig-cap">Hobbiton.</div>
+          </div>
+
+          <p>But now, I could no longer run, no longer jump.</p>
+          <p>For a long time, I would dream of running on the court, being knocked down, and breaking my leg. Being knocked down, and breaking my leg.</p>
+          <p class="dots">……………………………………………………</p>
+          <p>Those dreams woke me up again and again.</p>
+          <p>I felt like I would never be able to play sports again.</p>
+          <p>I sat in a wheelchair.</p>
+
+          <div class="divider"></div>
+
+          <p>On September 29, 2018, the external fixator was removed in the hospital. Blood spurted high from the screw holes.</p>
+
+          <p>My mom said to me: “On October 4, we’re going to New Zealand.”</p>
+          <p class="quote">“Impossible. How could I? On crutches, in a wheelchair, to New Zealand? How could that be?”</p>
+
+          <p>Yet on October 4, 2018, I boarded the flight to Auckland.</p>
+          <p>On crutches, I flew 10,000 kilometers.</p>
+          <p>On crutches, I climbed Mount Eden.</p>
+          <p>On crutches, I visited Hobbiton and went to Bilbo Baggins’s home.</p>
+
+          <div class="fig fig-right">
+            <img src="story/2018-78.jpg" alt="Lake Tekapo night sky, the Milky Way overhead">
+            <div class="fig-cap">Lake Tekapo.</div>
+          </div>
+
+          <p>I went to Rotorua and watched the haka.</p>
+          <p>I went to Lake Tekapo and saw the vast starry sky.</p>
+          <p>In Queenstown, when I saw the Kawarau Bridge Bungy, I told myself: “When I recover, I will come back here.”</p>
+          <p>I even reached the southernmost city of New Zealand, Invercargill.</p>
+
+          <p class="dots">…………………………………………………………</p>
+
+          <p>That nightmare never returned again.</p>
+          <p>I went back to the soccer field.</p>
+          <p>I was still the key center player on the basketball court.</p>
+          <p>I would fall down again and again, but I knew I could always stand back up.</p>
+          <p>I would grow stronger, and braver.</p>
+
+          <div class="fig fig-left">
+            <img src="story/2019-31.jpg" alt="Back on the court — focused and ready">
+            <div class="fig-cap">Back to the court.</div>
+          </div>
+
+          <p>I am no longer defined by the injury I once suffered, but by the strength I discovered through it. And with that strength, I am ready to face every challenge ahead.</p>
+
+          <div class="divider"></div>
+
+          <!-- 分区分隔线 -->
+          <div class="section-sep" role="separator" aria-label="Photo gallery"></div>
+
+          <!-- 图片长廊（点击放大预览） -->
+          <section class="gallery" aria-label="Photo gallery">
+            <div class="gallery-grid">
+              <!-- 第一行 -->
+              <img src="story/2018-97.jpg" alt="Mount Eden lookout over Auckland">
+              <img src="story/2018-92.jpg" alt="Hobbiton hills and round doors">
+              <img src="story/2018-96.jpg" alt="Rotorua haka performance">
+              <img src="story/2018-125.jpg" alt="Kawarau Bridge Bungy, Queenstown">
+              <img src="story/2018-161.jpg" alt="Invercargill streetscape in the south">
+              <!-- 第二行（可删除或补充更多） -->
+              <img src="story/2018-82.jpg" alt="Rotorua cultural spot">
+              <img src="story/2018-53.jpg" alt="Preparing to move forward">
+              <img src="story/2018-76.jpg" alt="At the airport on crutches">
+              <img src="story/2018-94.jpg" alt="Hobbiton close-up">
+              <img src="story/2018-78.jpg" alt="Lake Tekapo starry Milky Way">
+            </div>
+          </section>
+
+          <!-- 底部两个导航链接（保留） -->
+          <div class="back-links" aria-label="Back links">
             <a href="index.html">← Back to Home</a>
-            <span style="color:#bbb; margin: 0 0.4rem;">|</span>
+            <span>|</span>
             <a href="profile.html">View Profile</a>
           </div>
-        </section>
-      </article>
+        </article>
+      </div>
     </main>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+    <button class="lb-close" aria-label="Close">✕</button>
+    <img src="" alt="">
   </div>
 
   <footer class="footer">
     <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 简易 Lightbox：点击画廊小图 -> 显示大图；再点击任意处/图片/关闭按钮/ESC -> 关闭
+    (function(){
+      const lb = document.getElementById('lightbox');
+      const lbImg = lb.querySelector('img');
+      const closeBtn = lb.querySelector('.lb-close');
+
+      function openLightbox(src, alt){
+        lbImg.src = src;
+        lbImg.alt = alt || '';
+        lb.classList.add('open');
+        document.body.classList.add('no-scroll');
+        // 将焦点移到关闭按钮，便于键盘用户
+        closeBtn.focus({preventScroll:true});
+      }
+      function closeLightbox(){
+        lb.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+        lbImg.src = '';
+        lbImg.alt = '';
+      }
+
+      // 代理点击：支持未来增删图片
+      document.addEventListener('click', function(e){
+        // 打开
+        const t = e.target;
+        if (t && t.closest('.gallery-grid') && t.tagName === 'IMG'){
+          const full = t.getAttribute('data-full') || t.currentSrc || t.src;
+          openLightbox(full, t.alt);
+        }
+        // 关闭：点击遮罩或图片或关闭按钮
+        if (t === lb || t === lbImg || t === closeBtn){
+          closeLightbox();
+        }
+      }, {passive: true});
+
+      // 键盘关闭
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
+      });
+    })();
+  </script>
 </body>
 </html>
