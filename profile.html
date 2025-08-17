@@ -6,29 +6,81 @@
   <title>Profile - Eddie Zhang</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Hero image: square corners + subtle elevation (same style as homepage) */
+    /* 顶部人物图样式（与首页一致） */
     .hero-main-image {
-      border-radius: 0 !important; /* override any global rounding */
+      border-radius: 0 !important;
       box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
       transition: box-shadow .25s ease, transform .25s ease;
-      background: #fff; /* clean edge for transparent images */
+      background: #fff;
     }
     .hero-main-image:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
     }
-    /* Optional keyboard focus */
     .hero-main-image:focus-visible {
       outline: 3px solid #A31F34;
       outline-offset: 2px;
     }
-    /* Respect reduced-motion preference */
     @media (prefers-reduced-motion: reduce) {
       .hero-main-image { transition: none; }
       .hero-main-image:hover {
         transform: none;
         box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
       }
+    }
+
+    /* 照片长廊样式 */
+    .photo-section h2 { margin-top: 0; }
+    .photo-grid {
+      display: grid;
+      /* 缩略图宽度基础降至 144px（比原 180px 小 20%），且无缝隙 */
+      grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
+      gap: 0;
+      background: #000; /* 避免极细像素缝隙显白边 */
+    }
+    .photo-grid a.photo {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 0;      /* 无缝衔接 */
+      box-shadow: none;      /* 无阴影，保证“中间不留缝隙”的观感 */
+      background: #000;
+      cursor: zoom-in;
+      transition: transform .08s ease, box-shadow .2s ease;
+    }
+    .photo-grid a.photo:hover {
+      transform: translateY(-2px);
+    }
+    .photo-grid a.photo:focus-visible {
+      outline: 3px solid #A31F34;
+      outline-offset: -3px; /* 贴合边缘，依然不出现外缝隙 */
+    }
+    .photo-grid img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 4 / 3;  /* 统一缩略图比例 */
+      object-fit: cover;
+      display: block;       /* 消除行内缝隙 */
+    }
+
+    /* 大图弹层（点击关闭） */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: zoom-out;
+      padding: 4vmin;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 6px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.5);
     }
   </style>
 </head>
@@ -39,13 +91,14 @@
       <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
       <nav class="nav">
         <a href="index.html">Home</a>
-        <a href="profile.html" class="active">Profile</a>
+        <a href="profile.html">Profile</a>
         <a href="achievements.html">Achievements</a>
         <a href="projects.html">Projects</a>
         <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="active">Contact</a>
       </nav>
     </header>
+
     <main class="main-content">
       <h2>About Me</h2>
       <div class="hero-mix">
@@ -58,7 +111,6 @@
           />
         </div>
         <div class="hero-text">
-          <!-- <h1>Eddie Zhang</h1> -->
           <p>
             Hi! I’m Eddie Zhang, a passionate learner and active explorer. From my earliest days, I’ve been driven by curiosity and a desire to discover how the world works—whether through science, sports, or creative projects. I believe in challenging myself, learning from setbacks, and making a positive impact on those around me.
           </p>
@@ -70,65 +122,98 @@
           </ul>
         </div>
       </div>
+
       <hr>
-      <section>
-        <h2>My Values</h2>
-        <div class="cards">
-          <div class="card">
-            <h3>Resilience</h3>
-            <p>
-              I embrace challenges and view setbacks as opportunities to grow. Whether recovering from an injury or facing a tough academic problem, I never give up easily.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Curiosity</h3>
-            <p>
-              I am always eager to ask questions, seek new experiences, and push the boundaries of my knowledge—be it through robotics, sports, or travel.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Teamwork</h3>
-            <p>
-              From basketball courts to robotics labs, I love collaborating with others. I believe great things are achieved together, not alone.
-            </p>
-          </div>
-          <div class="card">
-            <h3>Empathy</h3>
-            <p>
-              I care deeply about my friends and community. Tutoring classmates, volunteering, and helping others solve problems are all important to me.
-            </p>
-          </div>
-        </div>
-      </section>
-      <hr>
-      <section>
-        <h2>Snapshot Gallery</h2>
-        <div class="cards">
-          <div class="card">
-            <img src="images/gallery-basketball.jpg" alt="Playing basketball" style="width:100%;border-radius:8px;">
-            <p class="highlight">Basketball Captain</p>
-            <p>Leading my team during regional championships.</p>
-          </div>
-          <div class="card">
-            <img src="images/gallery-robotics.jpg" alt="Robotics competition" style="width:100%;border-radius:8px;">
-            <p class="highlight">Robotics Champion</p>
-            <p>Celebrating with teammates at the Asia-Pacific Robotics Competition.</p>
-          </div>
-          <div class="card">
-            <img src="images/gallery-travel.jpg" alt="Travel abroad" style="width:100%;border-radius:8px;">
-            <p class="highlight">World Explorer</p>
-            <p>Exploring UBC campus in Canada, always eager to learn from new cultures.</p>
-          </div>
-        </div>
-        <p style="text-align:center; color:#888; margin-top:1rem;">* Photos are for illustration. Replace with real images for best effect.</p>
+
+      <!-- 照片长廊：使用 prophoto/2018-55.jpg 到 2018-61.jpg 轮替占位 -->
+      <section class="photo-section">
+        <h2>Photo Gallery</h2>
+        <div class="photo-grid">
+          <!-- 12 张，7 张轮替：55,56,57,58,59,60,61,55,56,57,58,59 -->
+          <a class="photo" href="#" data-full="prophoto/2018-55.jpg" aria-label="Open photo 1">
+            <img src="prophoto/2018-55.jpg" alt="Gallery image 1" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="prophoto/2018-56.jpg" aria-label="Open photo 2">
+            <img src="prophoto/2018-56.jpg" alt="Gallery image 2" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="prophoto/2018-57.jpg" aria-label="Open photo 3">
+            <img src="prophoto/2018-57.jpg" alt="Gallery image 3" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="prophoto/2018-58.jpg" aria-label="Open photo 4">
+            <img src="prophoto/2018-58.jpg" alt="Gallery image 4" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="prophoto/2018-59.jpg" aria-label="Open photo 5">
+            <img src="prophoto/2018-59.jpg" alt="Gallery image 5" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="prophoto/2018-60.jpg" aria-label="Open photo 6">
+            <img src="prophoto/2018-60.jpg" alt="Gallery image 6" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="prophoto/2018-61.jpg" aria-label="Open photo 7">
+            <img src="prophoto/2018-61.jpg" alt="Gallery image 7" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="prophoto/2018-55.jpg" aria-label="Open photo 8">
+            <img src="prophoto/2018-55.jpg" alt="Gallery image 8" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="prophoto/2018-56.jpg" aria-label="Open photo 9">
+            <img src="prophoto/2018-56.jpg" alt="Gallery image 9" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="prophoto/2018-57.jpg" aria-label="Open photo 10">
+            <img src="prophoto/2018-57.jpg" alt="Gallery image 10" loading="lazy">
+          </a>
+           </div>
+        <p style="text-align:center; color:#888; margin-top:1rem;">
+          Tip: 点击任意缩略图查看大图，再次点击任意位置关闭。
+        </p>
       </section>
     </main>
   </div>
+
+  <!-- 大图弹层 -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+    <img id="lightboxImg" alt="">
+  </div>
+
   <footer class="footer">
     <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
   </footer>
+
   <script>
+    // 年份
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 简易 Lightbox：点击缩略图打开，点击遮罩或图片关闭，Esc 关闭
+    (function () {
+      const grid = document.querySelector('.photo-grid');
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+
+      if (!grid || !lightbox || !img) return;
+
+      grid.addEventListener('click', function (e) {
+        const link = e.target.closest('a.photo');
+        if (!link) return;
+        e.preventDefault();
+        const full = link.getAttribute('data-full');
+        const alt = link.querySelector('img')?.getAttribute('alt') || 'Photo';
+        if (!full) return;
+        img.src = full;
+        img.alt = alt;
+        lightbox.classList.add('open');
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        // 为避免关闭瞬间闪烁，稍后清空 src
+        setTimeout(() => { img.src = ''; }, 150);
+      }
+
+      lightbox.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+          closeLightbox();
+        }
+      });
+    })();
   </script>
 </body>
 </html>

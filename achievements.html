@@ -35,6 +35,17 @@
       margin-top: 0.2rem;
     }
 
+    /* Make highlight titles clickable but keep existing visual style */
+    .card .highlight a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: inherit;
+      display: inline-block;
+    }
+    .card .highlight a:hover {
+      text-decoration: underline;
+    }
+
     /* Respect reduced-motion preference */
     @media (prefers-reduced-motion: reduce) {
       .hero-main-image { transition: none; }
@@ -88,15 +99,23 @@
         <h2>Academic Honors</h2>
         <div class="cards">
           <div class="card">
-            <img src="images/achievement-math.jpg" alt="Math competition" style="width:100%;border-radius:8px;" loading="lazy">
-            <p class="highlight">Mathematics Olympiad - National Silver Medal</p>
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="MATH.html" aria-label="View details of Mathematics Olympiad - National Silver Medal">
+                Mathematics Olympiad - National Silver Medal
+              </a>
+            </p>
             <p>
               Demonstrated analytical and creative problem-solving skills in a highly competitive environment. The experience fueled my love for mathematics and inspired me to pursue deeper research in STEM fields.
             </p>
           </div>
           <div class="card">
-            <img src="images/achievement-robotics.jpg" alt="Robotics award" style="width:100%;border-radius:8px;" loading="lazy">
-            <p class="highlight">Asia-Pacific Robotics Championship - Team Captain & Gold Winner</p>
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="robot.html" aria-label="View details of Asia-Pacific Robotics Championship - Team Captain & Gold Winner">
+                Asia-Pacific Robotics Championship - Team Captain & Gold Winner
+              </a>
+            </p>
             <p>
               Led my team to victory by combining technical expertise, strategic thinking, and teamwork. This achievement not only sharpened my engineering skills, but also taught me about leadership and innovation under pressure.
             </p>
@@ -109,15 +128,23 @@
         <h2>Athletic Achievements</h2>
         <div class="cards">
           <div class="card">
-            <img src="images/achievement-basketball.jpg" alt="Basketball award" style="width:100%;border-radius:8px;" loading="lazy">
-            <p class="highlight">Regional Basketball League - MVP</p>
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="baske.html" aria-label="View details of Regional Basketball League - MVP">
+                Regional Basketball League - MVP
+              </a>
+            </p>
             <p>
               Recognized as Most Valuable Player for my leadership and sportsmanship. Years of training have instilled discipline, perseverance, and the spirit of teamwork—qualities I apply on and off the court.
             </p>
           </div>
           <div class="card">
-            <img src="images/achievement-sportsmanship.jpg" alt="Sportsmanship" style="width:100%;border-radius:8px;" loading="lazy">
-            <p class="highlight">Sportsmanship Award - School Athletics Festival</p>
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="sports.html" aria-label="View details of Sportsmanship Award - School Athletics Festival">
+                Sportsmanship Award - School Athletics Festival
+              </a>
+            </p>
             <p>
               Honored for my positive attitude, encouragement of teammates, and fair play. I believe true achievement comes not just from winning, but from uplifting others and enjoying the journey together.
             </p>
@@ -130,15 +157,23 @@
         <h2>Leadership & Community</h2>
         <div class="cards">
           <div class="card">
-            <img src="images/achievement-volunteer.jpg" alt="Volunteering" style="width:100%;border-radius:8px;" loading="lazy">
-            <p class="highlight">Student Council President</p>
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="council.html" aria-label="View details of Student Council President">
+                Student Council President
+              </a>
+            </p>
             <p>
               Elected by peers to represent the student body, organize events, and promote school spirit. This role helped me develop communication, organization, and empathy—skills essential for making an impact.
             </p>
           </div>
           <div class="card">
-            <img src="images/achievement-tutor.jpg" alt="Tutoring" style="width:100%;border-radius:8px;" loading="lazy">
-            <p class="highlight">Peer Tutoring Program - Top Mentor</p>
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="tutor.html" aria-label="View details of Peer Tutoring Program - Top Mentor">
+                Peer Tutoring Program - Top Mentor
+              </a>
+            </p>
             <p>
               Supported classmates in math and science, helping them build confidence and achieve their academic goals. Sharing knowledge and seeing others grow is one of my proudest achievements.
             </p>
@@ -150,13 +185,16 @@
       <section>
         <h2>Other Notable Awards</h2>
         <ul>
-          <li>UBC Summer Program - Outstanding Participant</li>
-          <li>Shanghai Young Innovators Award</li>
-          <li>English Speech Competition - 2nd Place</li>
-          <li>International Exchange Ambassador - New Zealand Program</li>
+          <li><a href="ubc.html">UBC Summer Program - Outstanding Participant</a></li>
+          <li><a href="innovators.html">Shanghai Young Innovators Award</a></li>
+          <li><a href="speech.html">English Speech Competition - 2nd Place</a></li>
+          <li><a href="nz-ambassador.html">International Exchange Ambassador - New Zealand Program</a></li>
         </ul>
       </section>
-      <p style="text-align:center; color:#888; margin-top:1.5rem;">* All images are placeholders. Replace with real photos for best effect.</p>
+
+      <p style="text-align:center; color:#888; margin-top:1.5rem;">
+        * Hero banner image is a placeholder. Replace with a real photo for best effect.
+      </p>
     </main>
   </div>
   <footer class="footer">

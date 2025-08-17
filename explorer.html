@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorer - Eddie Zhang</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* 顶部人物图样式（与首页一致） */
+    .hero-main-image {
+      border-radius: 0 !important;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      transition: box-shadow .25s ease, transform .25s ease;
+      background: #fff;
+    }
+    .hero-main-image:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
+    }
+    .hero-main-image:focus-visible {
+      outline: 3px solid #A31F34;
+      outline-offset: 2px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-main-image { transition: none; }
+      .hero-main-image:hover {
+        transform: none;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+    }
+
+    /* 照片长廊样式（完全沿用 profile.html） */
+    .photo-section h2 { margin-top: 0; }
+    .photo-grid {
+      display: grid;
+      /* 缩略图宽度基础降至 144px（比原 180px 小 20%），且无缝隙 */
+      grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
+      gap: 0;
+      background: #000; /* 避免极细像素缝隙显白边 */
+    }
+    .photo-grid a.photo {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 0;      /* 无缝衔接 */
+      box-shadow: none;      /* 无阴影，保证“中间不留缝隙”的观感 */
+      background: #000;
+      cursor: zoom-in;
+      transition: transform .08s ease, box-shadow .2s ease;
+    }
+    .photo-grid a.photo:hover {
+      transform: translateY(-2px);
+    }
+    .photo-grid a.photo:focus-visible {
+      outline: 3px solid #A31F34;
+      outline-offset: -3px; /* 贴合边缘，依然不出现外缝隙 */
+    }
+    .photo-grid img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 4 / 3;  /* 统一缩略图比例 */
+      object-fit: cover;
+      display: block;       /* 消除行内缝隙 */
+    }
+
+    /* 大图弹层（点击关闭） */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: zoom-out;
+      padding: 4vmin;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 6px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 导航栏：严格沿用 profile.html，不做任何新增或高亮修改 -->
+    <header class="navbar">
+      <h1 class="site-title">Eddie Zhang</h1>
+      <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <h2>Explorer</h2>
+
+      <!-- 文本内容（按你的来稿，轻量排版，不引入额外布局） -->
+      <section class="section" aria-labelledby="explorer-story">
+        <div style="text-align:center; line-height:1.9; max-width:46ch; margin:0 auto 1.2rem;">
+          I love this world.<br>
+          But why?<br>
+          Not for its breathtaking landscapes,<br>
+          Not for the countless delicacies scattered across the globe,<br>
+          Not to post on social media and collect likes…<br>
+          ………………………………<br>
+          I love this world<br>
+          because of my grandfather.
+        </div>
+
+        <p>My grandfather was a highly respected senior seafarer. He led fleets to Australia, Egypt, Canada, the United Kingdom, Brazil… He had sailed almost every corner of the world!</p>
+        <p>Since I was a child, I have listened, wide-eyed, to his tales of fascinating places and adventures.</p>
+
+        <p>And so,<br>
+        I want to see the world for myself.<br>
+        I want to study abroad.<br>
+        I want to explore this world.<br>
+        I want to set foot on the lands he once walked, to witness the rising sun, feel the wind brushing my face, and watch the rain fall…</p>
+
+        <p>My beloved grandfather loved this world with all his heart. And because of him, I love it even more.</p>
+
+        <p style="font-style:italic; text-align:center; color:#555;">This piece is dedicated to my dearly beloved late grandfather.</p>
+      </section>
+
+      <hr>
+
+      <!-- 照片长廊：样式与大小完全沿用 profile.html，仅替换为 expphoto/2018-92.jpg → 2018-101.jpg -->
+      <section class="photo-section">
+        <h2>Photo Gallery</h2>
+        <div class="photo-grid">
+          <a class="photo" href="#" data-full="expphoto/2018-92.jpg" aria-label="Open photo 2018-92">
+            <img src="expphoto/2018-92.jpg" alt="Explorer image 2018-92" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="expphoto/2018-93.jpg" aria-label="Open photo 2018-93">
+            <img src="expphoto/2018-93.jpg" alt="Explorer image 2018-93" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="expphoto/2018-94.jpg" aria-label="Open photo 2018-94">
+            <img src="expphoto/2018-94.jpg" alt="Explorer image 2018-94" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="expphoto/2018-95.jpg" aria-label="Open photo 2018-95">
+            <img src="expphoto/2018-95.jpg" alt="Explorer image 2018-95" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="expphoto/2018-96.jpg" aria-label="Open photo 2018-96">
+            <img src="expphoto/2018-96.jpg" alt="Explorer image 2018-96" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="expphoto/2018-97.jpg" aria-label="Open photo 2018-97">
+            <img src="expphoto/2018-97.jpg" alt="Explorer image 2018-97" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="expphoto/2018-98.jpg" aria-label="Open photo 2018-98">
+            <img src="expphoto/2018-98.jpg" alt="Explorer image 2018-98" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="expphoto/2018-99.jpg" aria-label="Open photo 2018-99">
+            <img src="expphoto/2018-99.jpg" alt="Explorer image 2018-99" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="expphoto/2018-100.jpg" aria-label="Open photo 2018-100">
+            <img src="expphoto/2018-100.jpg" alt="Explorer image 2018-100" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="expphoto/2018-101.jpg" aria-label="Open photo 2018-101">
+            <img src="expphoto/2018-101.jpg" alt="Explorer image 2018-101" loading="lazy">
+          </a>
+        </div>
+        <p style="text-align:center; color:#888; margin-top:1rem;">
+          Tip: 点击任意缩略图查看大图，再次点击任意位置关闭。
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <!-- 大图弹层 -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+    <img id="lightboxImg" alt="">
+  </div>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 年份
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 简易 Lightbox：点击缩略图打开，点击遮罩或图片关闭，Esc 关闭
+    (function () {
+      const grid = document.querySelector('.photo-grid');
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+
+      if (!grid || !lightbox || !img) return;
+
+      grid.addEventListener('click', function (e) {
+        const link = e.target.closest('a.photo');
+        if (!link) return;
+        e.preventDefault();
+        const full = link.getAttribute('data-full');
+        const alt = link.querySelector('img')?.getAttribute('alt') || 'Photo';
+        if (!full) return;
+        img.src = full;
+        img.alt = alt;
+        lightbox.classList.add('open');
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        // 为避免关闭瞬间闪烁，稍后清空 src
+        setTimeout(() => { img.src = ''; }, 150);
+      }
+
+      lightbox.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

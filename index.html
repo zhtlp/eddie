@@ -17,6 +17,41 @@
       transform: translateY(-2px);
       box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
     }
+
+    /* Make each home card fully clickable */
+    .card.clickable {
+      position: relative;
+      cursor: pointer;
+      transition: transform .08s ease, box-shadow .2s ease;
+    }
+    .card.clickable:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+    .card.clickable:active {
+      transform: translateY(-1px);
+    }
+    /* Full-card stretched link for accessibility */
+    .stretched-link {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: inherit;
+      text-indent: -9999px; /* hide text, keep aria-label readable by screen readers */
+      overflow: hidden;
+    }
+    .stretched-link:focus-visible {
+      outline: 3px solid #A31F34;
+      outline-offset: 3px;
+    }
+
+    /* Reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-main-image { transition: none; }
+      .hero-main-image:hover { transform: none; box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08); }
+      .card.clickable { transition: none; }
+      .card.clickable:hover, .card.clickable:active { transform: none; box-shadow: none; }
+    }
   </style>
 </head>
 <body>
@@ -25,12 +60,12 @@
       <h1 class="site-title">Eddie Zhang</h1>
       <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
       <nav class="nav">
-        <a href="index.html" class="active">Home</a>
+        <a href="index.html">Home</a>
         <a href="profile.html">Profile</a>
         <a href="achievements.html">Achievements</a>
         <a href="projects.html">Projects</a>
         <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
+        <a href="contact.html" class="active">Contact</a>
       </nav>
     </header>
     <main class="main-content">
@@ -45,44 +80,46 @@ style="max-width:420px; max-height:450px; width:auto; height:auto;"/>
           <p>
             Student, athlete, innovator, and global citizen with a passion for excellence. I see every challenge as an opportunity to grow and strive to surpass expectations. Whether on the basketball court, leading a robotics team, or exploring new cultures, I bring dedication, creativity, and heart into everything I do.
           </p>
-     
-<a href="story.html" class="cta-button">My Story: New Zealand Grit</a>
-
+          <a href="story.html" class="cta-button">My Story: New Zealand Grit</a>
         </div>
       </div>
+
       <section class="cards">
-        <div class="card">
+        <article class="card clickable">
+          <a class="stretched-link" href="academic.html" aria-label="进入 Academic Excellence 页面"></a>
           <h2>Academic Excellence</h2>
           <p class="highlight">Curiosity & Achievement</p>
           <p>
             Dedicated to lifelong learning, I have excelled in academics across multiple disciplines. My journey is marked by curiosity-driven research, problem solving, and a love for discovering new ideas.
           </p>
-          <a href="achievements.html" class="more-button">More</a>
-        </div>
-        <div class="card">
+        </article>
+
+        <article class="card clickable">
+          <a class="stretched-link" href="leadership.html" aria-label="进入 Leadership & Projects 页面"></a>
           <h2>Leadership & Projects</h2>
           <p class="highlight">Innovation & Teamwork</p>
           <p>
             From captaining a robotics team to organizing community events, I thrive in leadership roles and collaborative environments. Every project is a new adventure in making a difference.
           </p>
-          <a href="projects.html" class="more-button">More</a>
-        </div>
-        <div class="card">
+        </article>
+
+        <article class="card clickable">
+          <a class="stretched-link" href="athletics.html" aria-label="进入 Athletic Spirit 页面"></a>
           <h2>Athletic Spirit</h2>
           <p class="highlight">Sportsmanship & Resilience</p>
           <p>
             Over a decade of basketball training and competitions have taught me grit, discipline, and the power of teamwork. I bring the same determination to all areas of my life.
           </p>
-          <a href="achievements.html#sports" class="more-button">More</a>
-        </div>
-        <div class="card">
+        </article>
+
+        <article class="card clickable">
+          <a class="stretched-link" href="explorer.html" aria-label="进入 Global Explorer 页面"></a>
           <h2>Global Explorer</h2>
           <p class="highlight">Perspective & Growth</p>
           <p>
             My travels across China, the U.S., New Zealand, and Canada have broadened my horizons. I believe meaningful experiences and diverse perspectives spark empathy and ambition.
           </p>
-          <a href="gallery.html" class="more-button">More</a>
-        </div>
+        </article>
       </section>
     </main>
   </div>
