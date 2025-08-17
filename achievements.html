@@ -5,6 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Achievements - Eddie Zhang</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Hero image: square corners + subtle elevation (consistent with other pages) */
+    .hero-main-image {
+      border-radius: 0 !important;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      transition: box-shadow .25s ease, transform .25s ease;
+      background: #fff;
+    }
+    .hero-main-image:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
+    }
+    .hero-main-image:focus-visible {
+      outline: 3px solid #A31F34;
+      outline-offset: 2px;
+    }
+
+    /* Slight polish for hero layout */
+    .hero-mix {
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .hero-text h1 {
+      margin: 0 0 0.4rem 0;
+      line-height: 1.2;
+    }
+    .hero-text p {
+      margin-top: 0.2rem;
+    }
+
+    /* Respect reduced-motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-main-image { transition: none; }
+      .hero-main-image:hover {
+        transform: none;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+    }
+
+    /* Optional: tone down the banner height on very small screens */
+    @media (max-width: 480px) {
+      .hero-image .hero-main-image { height: 260px !important; }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -24,12 +68,13 @@
       <h2>My Achievements</h2>
       <section class="hero-mix" style="margin-bottom:2.5rem;">
         <div class="hero-image">
-<img
-  src="images/z2.jpg"
-  alt="Awards trophy"
-  class="hero-main-image"
-  style="height:320px; width:100%; object-fit:cover;"
-/>
+          <img
+            src="images/z2.jpg"
+            alt="Awards trophy"
+            class="hero-main-image"
+            style="height:320px; width:100%; object-fit:cover;"
+            loading="eager"
+          />
         </div>
         <div class="hero-text">
           <h1>Pushing Limits, Reaching Goals</h1>
@@ -38,18 +83,19 @@
           </p>
         </div>
       </section>
+
       <section>
         <h2>Academic Honors</h2>
         <div class="cards">
           <div class="card">
-            <img src="images/achievement-math.jpg" alt="Math competition" style="width:100%;border-radius:8px;">
+            <img src="images/achievement-math.jpg" alt="Math competition" style="width:100%;border-radius:8px;" loading="lazy">
             <p class="highlight">Mathematics Olympiad - National Silver Medal</p>
             <p>
               Demonstrated analytical and creative problem-solving skills in a highly competitive environment. The experience fueled my love for mathematics and inspired me to pursue deeper research in STEM fields.
             </p>
           </div>
           <div class="card">
-            <img src="images/achievement-robotics.jpg" alt="Robotics award" style="width:100%;border-radius:8px;">
+            <img src="images/achievement-robotics.jpg" alt="Robotics award" style="width:100%;border-radius:8px;" loading="lazy">
             <p class="highlight">Asia-Pacific Robotics Championship - Team Captain & Gold Winner</p>
             <p>
               Led my team to victory by combining technical expertise, strategic thinking, and teamwork. This achievement not only sharpened my engineering skills, but also taught me about leadership and innovation under pressure.
@@ -57,19 +103,20 @@
           </div>
         </div>
       </section>
+
       <hr>
       <section>
         <h2>Athletic Achievements</h2>
         <div class="cards">
           <div class="card">
-            <img src="images/achievement-basketball.jpg" alt="Basketball award" style="width:100%;border-radius:8px;">
+            <img src="images/achievement-basketball.jpg" alt="Basketball award" style="width:100%;border-radius:8px;" loading="lazy">
             <p class="highlight">Regional Basketball League - MVP</p>
             <p>
               Recognized as Most Valuable Player for my leadership and sportsmanship. Years of training have instilled discipline, perseverance, and the spirit of teamwork—qualities I apply on and off the court.
             </p>
           </div>
           <div class="card">
-            <img src="images/achievement-sportsmanship.jpg" alt="Sportsmanship" style="width:100%;border-radius:8px;">
+            <img src="images/achievement-sportsmanship.jpg" alt="Sportsmanship" style="width:100%;border-radius:8px;" loading="lazy">
             <p class="highlight">Sportsmanship Award - School Athletics Festival</p>
             <p>
               Honored for my positive attitude, encouragement of teammates, and fair play. I believe true achievement comes not just from winning, but from uplifting others and enjoying the journey together.
@@ -77,19 +124,20 @@
           </div>
         </div>
       </section>
+
       <hr>
       <section>
         <h2>Leadership & Community</h2>
         <div class="cards">
           <div class="card">
-            <img src="images/achievement-volunteer.jpg" alt="Volunteering" style="width:100%;border-radius:8px;">
+            <img src="images/achievement-volunteer.jpg" alt="Volunteering" style="width:100%;border-radius:8px;" loading="lazy">
             <p class="highlight">Student Council President</p>
             <p>
               Elected by peers to represent the student body, organize events, and promote school spirit. This role helped me develop communication, organization, and empathy—skills essential for making an impact.
             </p>
           </div>
           <div class="card">
-            <img src="images/achievement-tutor.jpg" alt="Tutoring" style="width:100%;border-radius:8px;">
+            <img src="images/achievement-tutor.jpg" alt="Tutoring" style="width:100%;border-radius:8px;" loading="lazy">
             <p class="highlight">Peer Tutoring Program - Top Mentor</p>
             <p>
               Supported classmates in math and science, helping them build confidence and achieve their academic goals. Sharing knowledge and seeing others grow is one of my proudest achievements.
@@ -97,6 +145,7 @@
           </div>
         </div>
       </section>
+
       <hr>
       <section>
         <h2>Other Notable Awards</h2>

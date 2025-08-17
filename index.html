@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Eddie Zhang | Portfolio</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Hero image: square corners + subtle elevation */
+    .hero-main-image {
+      border-radius: 0 !important; /* override any global rounding */
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      transition: box-shadow .25s ease, transform .25s ease;
+      background: #fff; /* ensures clean edge on transparent images */
+    }
+    .hero-main-image:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -34,6 +47,7 @@ style="max-width:420px; max-height:450px; width:auto; height:auto;"/>
           </p>
      
 <a href="story.html" class="cta-button">My Story: New Zealand Grit</a>
+
         </div>
       </div>
       <section class="cards">

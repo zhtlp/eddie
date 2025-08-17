@@ -5,6 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile - Eddie Zhang</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Hero image: square corners + subtle elevation (same style as homepage) */
+    .hero-main-image {
+      border-radius: 0 !important; /* override any global rounding */
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      transition: box-shadow .25s ease, transform .25s ease;
+      background: #fff; /* clean edge for transparent images */
+    }
+    .hero-main-image:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
+    }
+    /* Optional keyboard focus */
+    .hero-main-image:focus-visible {
+      outline: 3px solid #A31F34;
+      outline-offset: 2px;
+    }
+    /* Respect reduced-motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-main-image { transition: none; }
+      .hero-main-image:hover {
+        transform: none;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -24,23 +50,24 @@
       <h2>About Me</h2>
       <div class="hero-mix">
         <div class="hero-image">
- <img
-  src="images/z1.jpg"
-  alt="Eddie Zhang portrait"
-  class="hero-main-image"
-style="max-width:380px; max-height:420px; width:auto; height:auto;"
-/>
+          <img
+            src="images/z1.jpg"
+            alt="Eddie Zhang portrait"
+            class="hero-main-image"
+            style="max-width:420px; max-height:550px; width:auto; height:auto;"
+          />
         </div>
         <div class="hero-text">
           <!-- <h1>Eddie Zhang</h1> -->
-          <p>           Hi! I’m Eddie Zhang, a passionate learner and active explorer. From my earliest days, I’ve been driven by curiosity and a desire to discover how the world works—whether through science, sports, or creative projects. I believe in challenging myself, learning from setbacks, and making a positive impact on those around me.
+          <p>
+            Hi! I’m Eddie Zhang, a passionate learner and active explorer. From my earliest days, I’ve been driven by curiosity and a desire to discover how the world works—whether through science, sports, or creative projects. I believe in challenging myself, learning from setbacks, and making a positive impact on those around me.
           </p>
-       <ul class="info-list">
-  <li><strong>Birthday</strong><span>September 11, 2007</span></li>
-  <li><strong>Nationality</strong><span>Chinese</span></li>
-  <li><strong>Languages</strong><span>English (Fluent)<br> Mandarin Chinese (Native)<br>Spanish (Elementary)<br>Japanese (Self‑taught)</span></li>
-  <li><strong>Current School</strong><span>International Leadership of Texas Qingdao No.9 High School Dual Diploma Program</span></li>
-</ul>
+          <ul class="info-list">
+            <li><strong>Birthday</strong><span>September 11, 2007</span></li>
+            <li><strong>Nationality</strong><span>Chinese</span></li>
+            <li><strong>Languages</strong><span>English (Fluent)<br> Mandarin Chinese (Native)<br>Spanish (Elementary)<br>Japanese (Self‑taught)</span></li>
+            <li><strong>Current School</strong><span>International Leadership of Texas Qingdao No.9 High School Dual Diploma Program</span></li>
+          </ul>
         </div>
       </div>
       <hr>
