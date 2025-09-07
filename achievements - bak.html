@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievements - Eddie Zhang</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Hero image: square corners + subtle elevation (consistent with other pages) */
+    .hero-main-image {
+      border-radius: 0 !important;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      transition: box-shadow .25s ease, transform .25s ease;
+      background: #fff;
+    }
+    .hero-main-image:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
+    }
+    .hero-main-image:focus-visible {
+      outline: 3px solid #A31F34;
+      outline-offset: 2px;
+    }
+
+    /* Slight polish for hero layout */
+    .hero-mix {
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .hero-text h1 {
+      margin: 0 0 0.4rem 0;
+      line-height: 1.2;
+    }
+    .hero-text p {
+      margin-top: 0.2rem;
+    }
+
+    /* Make highlight titles clickable but keep existing visual style */
+    .card .highlight a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: inherit;
+      display: inline-block;
+    }
+    .card .highlight a:hover {
+      text-decoration: underline;
+    }
+
+    /* Respect reduced-motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-main-image { transition: none; }
+      .hero-main-image:hover {
+        transform: none;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+    }
+
+    /* Optional: tone down the banner height on very small screens */
+    @media (max-width: 480px) {
+      .hero-image .hero-main-image { height: 260px !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="navbar">
+      <h1 class="site-title">Eddie Zhang</h1>
+      <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="achievements.html" class="active">Achievements</a>
+        <a href="projects.html">Projects</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+    <main class="main-content">
+      <h2>My Achievements</h2>
+      <section class="hero-mix" style="margin-bottom:2.5rem;">
+        <div class="hero-image">
+          <img
+            src="images/z2.jpg"
+            alt="Awards trophy"
+            class="hero-main-image"
+            style="height:320px; width:100%; object-fit:cover;"
+            loading="eager"
+          />
+        </div>
+        <div class="hero-text">
+          <h1>Pushing Limits, Reaching Goals</h1>
+          <p>
+            Every achievement is the result of dedication, hard work, and a passion for growth. I am proud to share the milestones that define my academic, athletic, and personal journey—each one a step toward becoming the best version of myself.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Academic Honors</h2>
+        <div class="cards">
+          <div class="card">
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="MATH.html" aria-label="View details of Mathematics Olympiad - National Silver Medal">
+                Mathematics Olympiad - National Silver Medal
+              </a>
+            </p>
+            <p>
+              Demonstrated analytical and creative problem-solving skills in a highly competitive environment. The experience fueled my love for mathematics and inspired me to pursue deeper research in STEM fields.
+            </p>
+          </div>
+          <div class="card">
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="robot.html" aria-label="View details of Asia-Pacific Robotics Championship - Team Captain & Gold Winner">
+                Asia-Pacific Robotics Championship - Team Captain & Gold Winner
+              </a>
+            </p>
+            <p>
+              Led my team to victory by combining technical expertise, strategic thinking, and teamwork. This achievement not only sharpened my engineering skills, but also taught me about leadership and innovation under pressure.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+      <section>
+        <h2>Athletic Achievements</h2>
+        <div class="cards">
+          <div class="card">
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="baske.html" aria-label="View details of Regional Basketball League - MVP">
+                Regional Basketball League - MVP
+              </a>
+            </p>
+            <p>
+              Recognized as Most Valuable Player for my leadership and sportsmanship. Years of training have instilled discipline, perseverance, and the spirit of teamwork—qualities I apply on and off the court.
+            </p>
+          </div>
+          <div class="card">
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="sports.html" aria-label="View details of Sportsmanship Award - School Athletics Festival">
+                Sportsmanship Award - School Athletics Festival
+              </a>
+            </p>
+            <p>
+              Honored for my positive attitude, encouragement of teammates, and fair play. I believe true achievement comes not just from winning, but from uplifting others and enjoying the journey together.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+      <section>
+        <h2>Leadership & Community</h2>
+        <div class="cards">
+          <div class="card">
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="council.html" aria-label="View details of Student Council President">
+                Student Council President
+              </a>
+            </p>
+            <p>
+              Elected by peers to represent the student body, organize events, and promote school spirit. This role helped me develop communication, organization, and empathy—skills essential for making an impact.
+            </p>
+          </div>
+          <div class="card">
+            <!-- removed image placeholder -->
+            <p class="highlight">
+              <a href="tutor.html" aria-label="View details of Peer Tutoring Program - Top Mentor">
+                Peer Tutoring Program - Top Mentor
+              </a>
+            </p>
+            <p>
+              Supported classmates in math and science, helping them build confidence and achieve their academic goals. Sharing knowledge and seeing others grow is one of my proudest achievements.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+      <section>
+        <h2>Other Notable Awards</h2>
+        <ul>
+          <li><a href="ubc.html">UBC Summer Program - Outstanding Participant</a></li>
+          <li><a href="innovators.html">Shanghai Young Innovators Award</a></li>
+          <li><a href="speech.html">English Speech Competition - 2nd Place</a></li>
+          <li><a href="nz-ambassador.html">International Exchange Ambassador - New Zealand Program</a></li>
+        </ul>
+      </section>
+
+      <p style="text-align:center; color:#888; margin-top:1.5rem;">
+        * Hero banner image is a placeholder. Replace with a real photo for best effect.
+      </p>
+    </main>
+  </div>
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
