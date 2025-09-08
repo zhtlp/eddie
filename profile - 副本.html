@@ -6,7 +6,7 @@
   <title>Profile - Eddie Zhang</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Hero image (same styling as home) */
+    /* 顶部人物图样式（与首页一致） */
     .hero-main-image {
       border-radius: 0 !important;
       box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
@@ -29,45 +29,41 @@
       }
     }
 
-    /* Portrait photo wall */
+    /* 照片长廊样式 */
     .photo-section h2 { margin-top: 0; }
     .photo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 0;                /* Seamless mosaic */
-      background: #000;       /* Avoid faint seams on high‑dpi */
+      /* 缩略图宽度基础降至 144px（比原 180px 小 20%），且无缝隙 */
+      grid-template-columns: repeat(auto-fill, minmax(144px, 1fr));
+      gap: 0;
+      background: #000; /* 避免极细像素缝隙显白边 */
     }
     .photo-grid a.photo {
       position: relative;
       display: block;
       overflow: hidden;
-      border-radius: 0;
+      border-radius: 0;      /* 无缝衔接 */
+      box-shadow: none;      /* 无阴影，保证“中间不留缝隙”的观感 */
       background: #000;
       cursor: zoom-in;
-      transition: transform .08s ease;
+      transition: transform .08s ease, box-shadow .2s ease;
     }
     .photo-grid a.photo:hover {
       transform: translateY(-2px);
     }
     .photo-grid a.photo:focus-visible {
       outline: 3px solid #A31F34;
-      outline-offset: -3px;
+      outline-offset: -3px; /* 贴合边缘，依然不出现外缝隙 */
     }
     .photo-grid img {
       width: 100%;
       height: 100%;
-      /* Portrait aspect ratio (width : height) */
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 4 / 3;  /* 统一缩略图比例 */
       object-fit: cover;
-      object-position: center;
-      display: block;
-      transition: filter .25s;
-    }
-    .photo-grid a.photo:hover img {
-      filter: brightness(1.05) contrast(1.05);
+      display: block;       /* 消除行内缝隙 */
     }
 
-    /* Lightbox */
+    /* 大图弹层（点击关闭） */
     .lightbox {
       position: fixed;
       inset: 0;
@@ -83,14 +79,8 @@
     .lightbox img {
       max-width: 92vw;
       max-height: 92vh;
-      border-radius: 8px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.55);
-    }
-
-    @media (max-width: 640px){
-      .photo-grid {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      }
+      border-radius: 6px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.5);
     }
   </style>
 </head>
@@ -115,19 +105,19 @@
         <div class="hero-image">
           <img
             src="images/z1.jpg"
-            alt="Portrait of Eddie Zhang"
+            alt="Eddie Zhang portrait"
             class="hero-main-image"
             style="max-width:420px; max-height:550px; width:auto; height:auto;"
           />
         </div>
         <div class="hero-text">
           <p>
-            Hi! I’m Eddie Zhang, a passionate learner and active explorer. From my earliest days I’ve been driven by curiosity and a desire to understand how the world works—through science, sports, creativity, and global experiences. I believe in challenging myself, learning from setbacks, and contributing positively to others.
+            Hi! I’m Eddie Zhang, a passionate learner and active explorer. From my earliest days, I’ve been driven by curiosity and a desire to discover how the world works—whether through science, sports, or creative projects. I believe in challenging myself, learning from setbacks, and making a positive impact on those around me.
           </p>
           <ul class="info-list">
             <li><strong>Birthday</strong><span>September 11, 2007</span></li>
             <li><strong>Nationality</strong><span>Chinese</span></li>
-            <li><strong>Languages</strong><span>English (Fluent)<br>Mandarin Chinese (Native)<br>Spanish (Elementary)<br>Japanese (Self‑taught)</span></li>
+            <li><strong>Languages</strong><span>English (Fluent)<br> Mandarin Chinese (Native)<br>Spanish (Elementary)<br>Japanese (Self‑taught)</span></li>
             <li><strong>Current School</strong><span>International Leadership of Texas Qingdao No.9 High School Dual Diploma Program</span></li>
           </ul>
         </div>
@@ -135,49 +125,49 @@
 
       <hr>
 
-      <!-- Portrait Photo Gallery -->
-      <section class="photo-section">
-        <h2>Photo Gallery</h2>
-        <div class="photo-grid">
-          <a class="photo" href="#" data-full="profile/p1.jpg" aria-label="Open photo 1">
-            <img src="profile/p1.jpg" alt="Gallery image 1" loading="lazy">
-          </a>
-          <a class="photo" href="#" data-full="profile/p2.jpg" aria-label="Open photo 2">
-            <img src="profile/p2.jpg" alt="Gallery image 2" loading="lazy">
-          </a>
-          <a class="photo" href="#" data-full="profile/p3.jpg" aria-label="Open photo 3">
-            <img src="profile/p3.jpg" alt="Gallery image 3" loading="lazy">
-          </a>
-          <a class="photo" href="#" data-full="profile/p4.jpg" aria-label="Open photo 4">
-            <img src="profile/p4.jpg" alt="Gallery image 4" loading="lazy">
-          </a>
-          <a class="photo" href="#" data-full="profile/p5.jpg" aria-label="Open photo 5">
-            <img src="profile/p5.jpg" alt="Gallery image 5" loading="lazy">
-          </a>
-          <a class="photo" href="#" data-full="profile/p6.jpg" aria-label="Open photo 6">
-            <img src="profile/p6.jpg" alt="Gallery image 6" loading="lazy">
-          </a>
-          <a class="photo" href="#" data-full="profile/p7.jpg" aria-label="Open photo 7">
-            <img src="profile/p7.jpg" alt="Gallery image 7" loading="lazy">
-          </a>
-          <a class="photo" href="#" data-full="profile/p8.jpg" aria-label="Open photo 8">
-            <img src="profile/p8.jpg" alt="Gallery image 8" loading="lazy">
-          </a>
-            <a class="photo" href="#" data-full="profile/p9.jpg" aria-label="Open photo 9">
-            <img src="profile/p9.jpg" alt="Gallery image 9" loading="lazy">
-          </a>
-            <a class="photo" href="#" data-full="profile/p10.jpg" aria-label="Open photo 10">
-            <img src="profile/p10.jpg" alt="Gallery image 10" loading="lazy">
-          </a>
-        </div>
-        <p style="text-align:center; color:#888; margin-top:1rem;">
-          Tip: Click a thumbnail to view it larger. Click again (or press Esc) to close.
-        </p>
-      </section>
+      <!-- 照片长廊：使用 prophoto/2018-55.jpg 到 2018-61.jpg 轮替占位 -->
+ <section class="photo-section">
+  <h2>Photo Gallery</h2>
+  <div class="photo-grid">
+    <a class="photo" href="#" data-full="profile/p1.jpg" aria-label="Open photo 1">
+      <img src="profile/p1.jpg" alt="Gallery image 1" loading="lazy">
+    </a>
+    <a class="photo" href="#" data-full="profile/p2.jpg" aria-label="Open photo 2">
+      <img src="profile/p2.jpg" alt="Gallery image 2" loading="lazy">
+    </a>
+    <a class="photo" href="#" data-full="profile/p3.jpg" aria-label="Open photo 3">
+      <img src="profile/p3.jpg" alt="Gallery image 3" loading="lazy">
+    </a>
+    <a class="photo" href="#" data-full="profile/p4.jpg" aria-label="Open photo 4">
+      <img src="profile/p4.jpg" alt="Gallery image 4" loading="lazy">
+    </a>
+    <a class="photo" href="#" data-full="profile/p5.jpg" aria-label="Open photo 5">
+      <img src="profile/p5.jpg" alt="Gallery image 5" loading="lazy">
+    </a>
+    <a class="photo" href="#" data-full="profile/p6.jpg" aria-label="Open photo 6">
+      <img src="profile/p6.jpg" alt="Gallery image 6" loading="lazy">
+    </a>
+    <a class="photo" href="#" data-full="profile/p7.jpg" aria-label="Open photo 7">
+      <img src="profile/p7.jpg" alt="Gallery image 7" loading="lazy">
+    </a>
+    <a class="photo" href="#" data-full="profile/p8.jpg" aria-label="Open photo 8">
+      <img src="profile/p8.jpg" alt="Gallery image 8" loading="lazy">
+    </a>
+    <a class="photo" href="#" data-full="profile/p9.jpg" aria-label="Open photo 9">
+      <img src="profile/p9.jpg" alt="Gallery image 9" loading="lazy">
+    </a>
+    <a class="photo" href="#" data-full="profile/p10.jpg" aria-label="Open photo 10">
+      <img src="profile/p10.jpg" alt="Gallery image 10" loading="lazy">
+    </a>
+  </div>
+  <p style="text-align:center; color:#888; margin-top:1rem;">
+    Tip: Click any thumbnail to view a larger image. Click anywhere again to close.
+  </p>
+</section>
     </main>
   </div>
 
-  <!-- Lightbox -->
+  <!-- 大图弹层 -->
   <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
     <img id="lightboxImg" alt="">
   </div>
@@ -187,14 +177,15 @@
   </footer>
 
   <script>
-    // Footer year
+    // 年份
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Simple Lightbox
+    // 简易 Lightbox：点击缩略图打开，点击遮罩或图片关闭，Esc 关闭
     (function () {
       const grid = document.querySelector('.photo-grid');
       const lightbox = document.getElementById('lightbox');
       const img = document.getElementById('lightboxImg');
+
       if (!grid || !lightbox || !img) return;
 
       grid.addEventListener('click', function (e) {
@@ -211,7 +202,8 @@
 
       function closeLightbox() {
         lightbox.classList.remove('open');
-        setTimeout(() => { img.src = ''; }, 140);
+        // 为避免关闭瞬间闪烁，稍后清空 src
+        setTimeout(() => { img.src = ''; }, 150);
       }
 
       lightbox.addEventListener('click', closeLightbox);
