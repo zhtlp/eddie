@@ -1,56 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Eddie Zhang | Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css"/>
   <style>
-    /* Hero image: square corners + subtle elevation */
-    .hero-main-image {
-      border-radius: 0 !important; /* override any global rounding */
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
-      transition: box-shadow .25s ease, transform .25s ease;
-      background: #fff; /* ensures clean edge on transparent images */
+    :root{
+      /* 可快速微调左右比例与左侧图高度 */
+      --left: 0.92fr;
+      --right: 1.08fr;
+      --hero-h: clamp(70vh, 82vh, 92vh); /* 视觉高度：按需改 70~92vh */
+      --brand: #A31F34;
     }
-    .hero-main-image:hover {
+
+    /* 左右分栏 */
+    .split-wrap{
+      display: grid;
+      grid-template-columns: minmax(320px, var(--left)) var(--right);
+      gap: 1.2rem;
+      align-items: start;
+      margin-top: 1rem;
+    }
+
+    /* 左侧整列大图：从天到地的观感，滚动时固定在可视区 */
+    .split-left{
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: var(--hero-h);
+    }
+    .hero-fill-image{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 0;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      background: #fff;
+    }
+
+    /* 右侧内容区 */
+    .split-right{ padding-top: .2rem; }
+    .intro h1{ margin: .2rem 0 .4rem; }
+    .intro p{ margin: 0 0 1rem; color: #333; line-height: 1.6; }
+
+    /* 文字卡片列表：永远纵向排列，便于未来追加 */
+    .card-list{
+      display: grid;
+      grid-auto-flow: row;
+      row-gap: 1rem;
+      margin-top: .6rem;
+    }
+    .tcard{
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid #ece8ea;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.06);
+      overflow: hidden;
+      transition: transform .1s ease, box-shadow .2s ease;
+    }
+    .tcard:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,.10);
+    }
+    .tcard-accent{
+      height: 6px;
+      background: linear-gradient(90deg, var(--brand), #c24b5e 60%, #e0c7cd 100%);
+    }
+    .tcard-body{ padding: 1rem 1.05rem 1.15rem; }
+    .tcard-kicker{
+      font-size: .78rem; font-weight: 700; color: var(--brand);
+      letter-spacing: .2px; margin: 0 0 .35rem;
+    }
+    .tcard-title{
+      font-size: 1.25rem; font-weight: 800; margin: 0 0 .35rem; color: #222;
+    }
+    .tcard-desc{ margin: 0; color: #555; line-height: 1.55; font-size: .96rem; }
+
+    /* Hero 图片的悬浮微动画（保持克制） */
+    .hero-fill-image:hover{
       transform: translateY(-2px);
       box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
+      transition: transform .25s ease, box-shadow .25s ease;
     }
 
-    /* Make each home card fully clickable */
-    .card.clickable {
-      position: relative;
-      cursor: pointer;
-      transition: transform .08s ease, box-shadow .2s ease;
-    }
-    .card.clickable:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-    }
-    .card.clickable:active {
-      transform: translateY(-1px);
-    }
-    /* Full-card stretched link for accessibility */
-    .stretched-link {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      border-radius: inherit;
-      text-indent: -9999px; /* hide text, keep aria-label readable by screen readers */
-      overflow: hidden;
-    }
-    .stretched-link:focus-visible {
-      outline: 3px solid #A31F34;
-      outline-offset: 3px;
+    /* 移动端：上下堆叠，左图略缩高，避免遮挡 */
+    @media (max-width: 900px){
+      .split-wrap{ grid-template-columns: 1fr; }
+      .split-left{ position: static; height: 56vh; }
     }
 
-    /* Reduced motion preference */
-    @media (prefers-reduced-motion: reduce) {
-      .hero-main-image { transition: none; }
-      .hero-main-image:hover { transform: none; box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08); }
-      .card.clickable { transition: none; }
-      .card.clickable:hover, .card.clickable:active { transform: none; box-shadow: none; }
+    /* 减少动画偏好 */
+    @media (prefers-reduced-motion: reduce){
+      .tcard{ transition: none; }
+      .tcard:hover{ transform: none; box-shadow: 0 6px 16px rgba(0,0,0,.06); }
+      .hero-fill-image:hover{ transform: none; box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08); }
     }
   </style>
 </head>
@@ -68,61 +117,55 @@
         <a href="contact.html">Contact</a>
       </nav>
     </header>
+
     <main class="main-content">
-      <h2>Welcome</h2>
-      <div class="hero-mix">
-        <div class="hero-image">
-          <img src="images/M13.jpeg" alt="Eddie Zhang with cat" class="hero-main-image"
-style="max-width:420px; max-height:450px; width:auto; height:auto;"/>
+      <section class="split-wrap" aria-label="Hero and highlights">
+        <!-- 左列：Hero 大图（从天到地的视觉占位） -->
+        <div class="split-left">
+          <img src="images/M13.jpeg" alt="Eddie Zhang portrait" class="hero-fill-image"/>
         </div>
-        <div class="hero-text">
-          <h1>Hello, I'm Eddie Zhang</h1>
-          <p>
-            Student, athlete, innovator, and global citizen with a passion for excellence. I see every challenge as an opportunity to grow and strive to surpass expectations. Whether on the basketball court, leading a robotics team, or exploring new cultures, I bring dedication, creativity, and heart into everything I do.
-          </p>
-          <a href="story.html" class="cta-button">My Story: New Zealand Grit</a>
+
+        <!-- 右列：右上文字 + 纵向卡片 -->
+        <div class="split-right">
+          <div class="intro">
+            <h1>Hello, I'm Eddie Zhang</h1>
+            <p>
+Student, builder, and global citizen driven by restless curiosity. I learn through action—designing and programming robots, running small experiments, competing as an athlete, and documenting what I discover. Setbacks, including recovering from injury, have taught me patience and grit. Travel and languages broaden my perspective and empathy. In teams I listen first, think rigorously, and lead with integrity. I care about problems that matter and the people behind them, and I try to turn ideas into useful, human‑centered outcomes. Above all, I bring discipline, kindness, and teamwork to every project—learning fast, iterating thoughtfully, and helping those around me do their best work.
+  </p>
+          </div>
+
+          <section class="card-list" aria-label="Featured links">
+            <!-- 1. Story 在上 -->
+            <a class="tcard" href="story.html" aria-label="Go to My Story: New Zealand Grit">
+              <div class="tcard-accent" aria-hidden="true"></div>
+              <div class="tcard-body">
+                <div class="tcard-kicker">Resilience & Growth</div>
+                <h3 class="tcard-title">My Story: New Zealand Grit</h3>
+                <p class="tcard-desc">
+                  Relearning movement after an early injury taught patience and systems thinking. It shaped how I take on uncertain goals.
+                </p>
+              </div>
+            </a>
+<p>&nbsp
+            <!-- 2. Explorer 在下 -->
+            <a class="tcard" href="explorer.html" aria-label="Go to Global Explorer">
+              <div class="tcard-accent" aria-hidden="true"></div>
+              <div class="tcard-body">
+                <div class="tcard-kicker">Perspective & Curiosity</div>
+                <h3 class="tcard-title">Global Explorer</h3>
+                <p class="tcard-desc">
+                  Experiences across China, the U.S., New Zealand, and Canada broadened my worldview and inform the projects I build.
+                </p>
+              </div>
+            </a>
+
+            <!-- 后续想新增卡片，复制上方结构追加在此处即可 -->
+          </section>
         </div>
-      </div>
-
-      <section class="cards">
-        <article class="card clickable">
-          <a class="stretched-link" href="academic.html" aria-label="进入 Academic Excellence 页面"></a>
-          <h2>Academic Excellence</h2>
-          <p class="highlight">Curiosity & Achievement</p>
-          <p>
-            Dedicated to lifelong learning, I have excelled in academics across multiple disciplines. My journey is marked by curiosity-driven research, problem solving, and a love for discovering new ideas.
-          </p>
-        </article>
-
-        <article class="card clickable">
-          <a class="stretched-link" href="leadership.html" aria-label="进入 Leadership & Projects 页面"></a>
-          <h2>Leadership & Projects</h2>
-          <p class="highlight">Innovation & Teamwork</p>
-          <p>
-            From captaining a robotics team to organizing community events, I thrive in leadership roles and collaborative environments. Every project is a new adventure in making a difference.
-          </p>
-        </article>
-
-        <article class="card clickable">
-          <a class="stretched-link" href="athletics.html" aria-label="进入 Athletic Spirit 页面"></a>
-          <h2>Athletic Spirit</h2>
-          <p class="highlight">Sportsmanship & Resilience</p>
-          <p>
-            Over a decade of basketball training and competitions have taught me grit, discipline, and the power of teamwork. I bring the same determination to all areas of my life.
-          </p>
-        </article>
-
-        <article class="card clickable">
-          <a class="stretched-link" href="explorer.html" aria-label="进入 Global Explorer 页面"></a>
-          <h2>Global Explorer</h2>
-          <p class="highlight">Perspective & Growth</p>
-          <p>
-            My travels across China, the U.S., New Zealand, and Canada have broadened my horizons. I believe meaningful experiences and diverse perspectives spark empathy and ambition.
-          </p>
-        </article>
       </section>
     </main>
   </div>
+
   <footer class="footer">
     <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
   </footer>
