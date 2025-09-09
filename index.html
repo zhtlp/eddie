@@ -7,46 +7,46 @@
   <link rel="stylesheet" href="styles.css"/>
   <style>
     :root{
-      /* 可快速微调左右比例与左侧图高度 */
-      --left: 0.92fr;
-      --right: 1.08fr;
-      --hero-h: clamp(70vh, 82vh, 92vh); /* 视觉高度：按需改 70~92vh */
       --brand: #A31F34;
     }
 
-    /* 左右分栏 */
+    /* 左右分栏：左侧宽度随屏幕在 260px~520px 间自适应，默认约 34% */
     .split-wrap{
       display: grid;
-      grid-template-columns: minmax(320px, var(--left)) var(--right);
+      grid-template-columns: clamp(260px, 45%, 580px) 1fr;
       gap: 1.2rem;
-      align-items: start;
+      align-items: stretch; /* 两列等高 */
       margin-top: 1rem;
     }
 
-    /* 左侧整列大图：从天到地的观感，滚动时固定在可视区 */
+    /* 左列：sticky，但高度不固定，随右列内容高度等高 */
     .split-left{
       position: sticky;
-      top: 0;
+      top: 0;        /* 如需避开固定导航，可改为 12px 或具体高度 */
       align-self: start;
-      height: var(--hero-h);
     }
     .hero-fill-image{
       width: 100%;
-      height: 100%;
+      height: 100%;          /* 填满左列单元格的高度（与右列对齐） */
       object-fit: cover;
       object-position: center;
       display: block;
       border-radius: 0;
       box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
       background: #fff;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .hero-fill-image:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
     }
 
-    /* 右侧内容区 */
+    /* 右列内容 */
     .split-right{ padding-top: .2rem; }
     .intro h1{ margin: .2rem 0 .4rem; }
     .intro p{ margin: 0 0 1rem; color: #333; line-height: 1.6; }
 
-    /* 文字卡片列表：永远纵向排列，便于未来追加 */
+    /* 纵向卡片列表（以后可继续往下加） */
     .card-list{
       display: grid;
       grid-auto-flow: row;
@@ -82,23 +82,17 @@
     }
     .tcard-desc{ margin: 0; color: #555; line-height: 1.55; font-size: .96rem; }
 
-    /* Hero 图片的悬浮微动画（保持克制） */
-    .hero-fill-image:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-
-    /* 移动端：上下堆叠，左图略缩高，避免遮挡 */
+    /* 移动端：上下堆叠，左图不强求与右列等高，给一个舒适高度 */
     @media (max-width: 900px){
       .split-wrap{ grid-template-columns: 1fr; }
-      .split-left{ position: static; height: 56vh; }
+      .hero-fill-image{ height: 48vh; } /* 可调 42~56vh */
     }
 
     /* 减少动画偏好 */
     @media (prefers-reduced-motion: reduce){
       .tcard{ transition: none; }
       .tcard:hover{ transform: none; box-shadow: 0 6px 16px rgba(0,0,0,.06); }
+      .hero-fill-image{ transition: none; }
       .hero-fill-image:hover{ transform: none; box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08); }
     }
   </style>
@@ -120,22 +114,22 @@
 
     <main class="main-content">
       <section class="split-wrap" aria-label="Hero and highlights">
-        <!-- 左列：Hero 大图（从天到地的视觉占位） -->
+        <!-- 左列：Hero 图，等高于右列内容 -->
         <div class="split-left">
           <img src="images/M13.jpeg" alt="Eddie Zhang portrait" class="hero-fill-image"/>
         </div>
 
-        <!-- 右列：右上文字 + 纵向卡片 -->
+        <!-- 右列：上方文案 + 下方纵向卡片（Story 在上，Explorer 在下） -->
         <div class="split-right">
           <div class="intro">
             <h1>Hello, I'm Eddie Zhang</h1>
             <p>
-Student, builder, and global citizen driven by restless curiosity. I learn through action—designing and programming robots, running small experiments, competing as an athlete, and documenting what I discover. Setbacks, including recovering from injury, have taught me patience and grit. Travel and languages broaden my perspective and empathy. In teams I listen first, think rigorously, and lead with integrity. I care about problems that matter and the people behind them, and I try to turn ideas into useful, human‑centered outcomes. Above all, I bring discipline, kindness, and teamwork to every project—learning fast, iterating thoughtfully, and helping those around me do their best work.
-  </p>
+              Student, maker, and global citizen. I learn by doing—building robots, testing ideas, competing as an athlete,
+              and writing about what I discover. I value grit, integrity, and teamwork.
+            </p>
           </div>
 
           <section class="card-list" aria-label="Featured links">
-            <!-- 1. Story 在上 -->
             <a class="tcard" href="story.html" aria-label="Go to My Story: New Zealand Grit">
               <div class="tcard-accent" aria-hidden="true"></div>
               <div class="tcard-body">
@@ -146,7 +140,7 @@ Student, builder, and global citizen driven by restless curiosity. I learn throu
                 </p>
               </div>
             </a>
-            <!-- 2. Explorer 在下 -->
+
             <a class="tcard" href="explorer.html" aria-label="Go to Global Explorer">
               <div class="tcard-accent" aria-hidden="true"></div>
               <div class="tcard-body">
@@ -158,7 +152,7 @@ Student, builder, and global citizen driven by restless curiosity. I learn throu
               </div>
             </a>
 
-            <!-- 后续想新增卡片，复制上方结构追加在此处即可 -->
+            <!-- 未来如需新增卡片，复制上面结构追加到此处即可 -->
           </section>
         </div>
       </section>
