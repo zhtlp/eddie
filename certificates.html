@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Certificates Gallery - Eddie Zhang</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Widen only this page */
+    .container.wide { max-width:1200px; }
+    .main-content.gallery-tight {
+      padding:1.2rem 0.6rem 1.4rem;
+    }
+
+    /* 3x3 fixed layout on desktop */
+    .cert-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:1.2rem;            /* 可再调小比如 0.9rem */
+      margin:1rem 0 .4rem;
+    }
+
+    .cert-card{
+      position:relative;
+      aspect-ratio:1/1;
+      border-radius:18px;
+      overflow:hidden;
+      cursor:zoom-in;
+      background:#e9eaee;
+      box-shadow:0 4px 14px rgba(0,0,0,.10);
+      transition:transform .18s, box-shadow .22s;
+    }
+    .cert-card:hover,
+    .cert-card:focus-within{
+      transform:translateY(-6px);
+      box-shadow:0 14px 34px rgba(0,0,0,.18);
+    }
+
+    .cert-thumb{
+      position:absolute;
+      inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      object-position:center;
+      filter:brightness(1) contrast(1.03);
+      transition:filter .28s;
+    }
+    .cert-card:hover .cert-thumb{
+      filter:brightness(1.07) contrast(1.07);
+    }
+
+    .cert-label{
+      position:absolute;
+      left:0; right:0; bottom:0;
+      padding:.55rem .7rem .6rem;
+      margin:0;
+      font-size:.78rem;
+      line-height:1.15;
+      font-weight:600;
+      color:#fff;
+      background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.65) 78%,rgba(0,0,0,.82) 100%);
+      text-shadow:0 1px 2px rgba(0,0,0,.55);
+      letter-spacing:.35px;
+      display:-webkit-box;
+      -webkit-line-clamp:3;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background:rgba(10,10,15,0.85);
+      backdrop-filter:blur(4px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:1.4rem;
+      z-index:1000;
+    }
+    .lightbox.open{ display:flex; }
+    .lightbox img{
+      max-width:min(94vw,1400px);
+      max-height:90vh;
+      width:auto;
+      height:auto;
+      border-radius:14px;
+      box-shadow:0 18px 60px rgba(0,0,0,.45);
+      cursor:zoom-out;
+    }
+    .lb-caption{
+      color:#fff;
+      max-width:min(94vw,1400px);
+      font-size:.82rem;
+      margin-top:.7rem;
+      text-align:center;
+      line-height:1.38;
+      letter-spacing:.35px;
+      font-weight:500;
+    }
+    .lb-close{
+      position:absolute;
+      top:14px; right:18px;
+      width:42px; height:42px;
+      border-radius:50%;
+      background:#fff;
+      border:0;
+      font-size:1.05rem;
+      cursor:pointer;
+      box-shadow:0 6px 18px rgba(0,0,0,.30);
+      display:grid;
+      place-items:center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width:1100px){
+      .cert-grid{ gap:1rem; }
+    }
+    @media (max-width:900px){
+      .cert-grid{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:560px){
+      .cert-grid{ grid-template-columns:repeat(2,1fr); gap:.7rem; }
+      .cert-label{ font-size:.66rem; padding:.45rem .5rem .5rem; -webkit-line-clamp:3; }
+    }
+    @media (max-width:420px){
+      .cert-grid{ grid-template-columns:1fr; }
+      .cert-label{ font-size:.7rem; -webkit-line-clamp:2; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container wide">
+    <header class="navbar">
+      <h1 class="site-title">Eddie Zhang</h1>
+      <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="projects.html">Projects</a>
+        <a href="certificates.html" class="active">Certificates</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main class="main-content gallery-tight">
+      <h2>Certificates & Awards Gallery</h2>
+      <p style="max-width:940px;margin:.35rem 0 1rem;">
+        Click any certificate to enlarge. The grid shows a 3×3 layout on desktop for a bold, full-page presentation. On smaller screens it adapts automatically.
+      </p>
+
+      <div class="cert-grid" id="certGrid">
+        <figure class="cert-card" data-caption="UBC Extended Learning">
+          <img src="images/p1.jpg" alt="UBC Extended Learning Future Global Leaders" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">UBC Extended Learning Future Global Leaders</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="RoboCup Asia-Pacific 2022 - 1st Place (Certificate of Award)">
+          <img src="images/p2.jpg" alt="RoboCup Asia-Pacific 1st Place certificate" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">RoboCup AP 2022 – 1st Place</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="RoboCup Asia-Pacific 2022 - Participation Certificate">
+          <img src="images/p3.jpg" alt="RoboCup Asia-Pacific participation certificate" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">RoboCup Participation</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="District 'Three-Good Student' Recognition 2022">
+          <img src="images/p4.jpg" alt="Three-Good Student certificate" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">Three-Good Student</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="National Economics Challenge 2024 Achievement">
+          <img src="images/p5.jpg" alt="National Economics Challenge certificate" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">NEC Achievement</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="Academic Transcript / Examination Results">
+          <img src="images/p6.jpg" alt="Academic transcript document" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">Academic Transcript</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="Tuba Performance Level 10 Certificate">
+          <img src="images/p7.jpg" alt="Tuba Level 10 performance certificate" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">Tuba Level 10</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="Tuba Performance Level 10 Certificate">
+          <img src="images/p8.jpg" alt="Tuba Level 10 performance certificate" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">Tuba Level 10</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="Tuba Performance Level 10 Certificate">
+          <img src="images/p9.jpg" alt="Tuba Level 10 performance certificate" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">Tuba Level 10</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="Tuba Performance Level 10 Certificate">
+          <img src="images/p10.jpg" alt="Tuba Level 10 performance certificate" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">Tuba Level 10</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="Merit / Excellence Award Certificate">
+          <img src="images/p11.jpg" alt="Merit award certificate" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">Merit Award</figcaption>
+        </figure>
+        <figure class="cert-card" data-caption="Honor / Achievement Certificate">
+          <img src="images/p12.jpg" alt="Honor certificate" class="cert-thumb" loading="lazy">
+          <figcaption class="cert-label">Honor Certificate</figcaption>
+        </figure>
+      </div>
+    </main>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Certificate preview">
+    <button class="lb-close" aria-label="Close preview">✕</button>
+    <div style="text-align:center;">
+      <img id="lbImg" src="" alt="">
+      <div class="lb-caption" id="lbCap"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function(){
+      const grid = document.getElementById('certGrid');
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbCap = document.getElementById('lbCap');
+      const closeBtn = lb.querySelector('.lb-close');
+
+      function open(src, alt, cap){
+        lbImg.src = src;
+        lbImg.alt = alt || '';
+        lbCap.textContent = cap || alt || '';
+        lb.classList.add('open');
+        closeBtn.focus({preventScroll:true});
+        document.body.style.overflow='hidden';
+      }
+      function close(){
+        lb.classList.remove('open');
+        lbImg.src = '';
+        lbCap.textContent = '';
+        document.body.style.overflow='';
+      }
+
+      grid.addEventListener('click', e=>{
+        const card = e.target.closest('.cert-card');
+        if(!card) return;
+        const img = card.querySelector('img');
+        open(img.src, img.alt, card.getAttribute('data-caption'));
+      });
+
+      lb.addEventListener('click', e=>{
+        if(e.target===lb || e.target===lbImg || e.target===closeBtn) close();
+      });
+      document.addEventListener('keydown', e=>{
+        if(e.key==='Escape' && lb.classList.contains('open')) close();
+      });
+    })();
+  </script>
+</body>
+</html>
