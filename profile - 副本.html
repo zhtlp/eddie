@@ -12,11 +12,6 @@
       box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
       transition: box-shadow .25s ease, transform .25s ease;
       background: #fff;
-      width: 100%;
-      height: auto;
-      max-width: 420px;
-      max-height: 550px;
-      display: block;
     }
     .hero-main-image:hover {
       transform: translateY(-2px);
@@ -31,18 +26,6 @@
       .hero-main-image:hover {
         transform: none;
         box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
-      }
-    }
-    @media (max-width: 700px) {
-      .hero-main-image {
-        max-width: 95vw;
-        max-height: 62vw;
-      }
-    }
-    @media (max-width: 480px) {
-      .hero-main-image {
-        max-width: 100vw;
-        max-height: none;
       }
     }
 
@@ -133,6 +116,7 @@
             src="images/z1.jpg"
             alt="Portrait of Eddie Zhang"
             class="hero-main-image"
+            style="max-width:420px; max-height:550px; width:auto; height:auto;"
           />
         </div>
         <div class="hero-text">
