@@ -2,38 +2,144 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Projects - Eddie Zhang</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* 整卡可点击的样式与可用性 */
-    .card.clickable {
-      position: relative;
-      cursor: pointer;
-      transition: transform .08s ease, box-shadow .2s ease;
+    /* Page‑specific styles */
+    .hero-main-image{
+      border-radius:0 !important;
+      box-shadow:0 8px 18px rgba(0,0,0,0.12),0 2px 4px rgba(0,0,0,0.08);
+      transition:box-shadow .25s ease,transform .25s ease;
+      background:#fff;
     }
-    .card.clickable:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    .hero-main-image:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 28px rgba(0,0,0,0.16),0 4px 10px rgba(0,0,0,0.10);
     }
-    .card.clickable:active {
-      transform: translateY(-1px);
+    .hero-main-image:focus-visible{
+      outline:3px solid var(--brand);
+      outline-offset:2px;
     }
-    /* 覆盖全卡片的链接区域（可键盘聚焦） */
-    .stretched-link {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      border-radius: inherit; /* 若卡片有圆角则保持一致 */
-      text-indent: -9999px;   /* 隐藏可视文本，仍保留可访问性（依赖 aria-label） */
-      overflow: hidden;
+    @media (prefers-reduced-motion:reduce){
+      .hero-main-image{transition:none}
+      .hero-main-image:hover{transform:none;box-shadow:0 8px 18px rgba(0,0,0,0.12),0 2px 4px rgba(0,0,0,0.08);}
     }
-    .stretched-link:focus-visible {
-      outline: 3px solid #A31F34;
-      outline-offset: 3px;
+
+    /* Achievements table (used as projects table here) */
+    .achieve-wrap{ margin-top:1.2rem; }
+    .table-scroller{ overflow-x:auto; border-radius:12px; }
+    .achieve-table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:0.94rem;
+      line-height:1.45;
+      background:#fff;
+      border:1px solid #ececec;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 4px 14px rgba(0,0,0,0.05);
     }
-    /* 可选：标题在可点击卡片中保持本来视觉风格 */
-    .card h3, .card .highlight { margin-top: 0.4rem; }
+    .achieve-table caption{
+      font-weight:700;
+      padding:.9rem 1rem;
+      text-align:left;
+      background:linear-gradient(90deg,#fff,var(--bg-soft));
+      font-size:1.02rem;
+      color:var(--brand);
+    }
+    .achieve-table th,
+    .achieve-table td{
+      padding:.65rem .75rem;
+      vertical-align:top;
+      border-top:1px solid #f0f0f0;
+    }
+    .achieve-table th{
+      background:#faf7f8;
+      font-weight:600;
+      text-align:left;
+      font-size:.72rem;
+      letter-spacing:.55px;
+      text-transform:uppercase;
+      color:#555;
+    }
+    .achieve-table tbody tr:hover td{
+      background:#fff8f9;
+    }
+    .achieve-table td strong{ color:var(--brand); font-weight:600; }
+    .badge{
+      display:inline-block;
+      padding:.18rem .55rem .24rem;
+      border-radius:999px;
+      background:var(--brand);
+      color:#fff;
+      font-size:.64rem;
+      font-weight:600;
+      letter-spacing:.5px;
+      vertical-align:middle;
+      margin-right:.35rem;
+      white-space:nowrap;
+    }
+    .tag{
+      display:inline-block;
+      padding:.22rem .6rem .28rem;
+      background:#f5e9eb;
+      color:var(--brand);
+      border-radius:6px;
+      font-size:.68rem;
+      font-weight:600;
+      letter-spacing:.3px;
+      margin:.18rem .25rem .18rem 0;
+    }
+    .nowrap{ white-space:nowrap; }
+
+    /* Timeline summary (for project milestones) */
+    .timeline{
+      position:relative;
+      margin:2rem 0 1.2rem;
+      padding-left:1.1rem;
+      border-left:3px solid #f1d5d9;
+    }
+    .timeline-item{
+      margin:0 0 1.05rem;
+      position:relative;
+    }
+    .timeline-item::before{
+      content:"";
+      position:absolute;
+      width:14px;height:14px;
+      background:var(--brand);
+      border:3px solid #fff;
+      box-shadow:0 0 0 2px #f1d5d9;
+      border-radius:50%;
+      left:-1.52rem; top:.18rem;
+    }
+    .timeline-item h4{
+      margin:.1rem 0 .35rem;
+      font-size:1rem;
+      color:var(--brand);
+    }
+    .timeline-item p{
+      margin:.15rem 0;
+      font-size:.85rem;
+      color:#555;
+    }
+    .legend{
+      text-align:right;
+      font-size:.68rem;
+      color:#777;
+      margin:.4rem 0 -.2rem;
+      letter-spacing:.45px;
+    }
+
+    @media (max-width:880px){
+      .achieve-table{ font-size:.86rem; }
+      .achieve-table th,.achieve-table td{ padding:.55rem .55rem; }
+    }
+    @media (max-width:640px){
+      .achieve-table th{ font-size:.58rem; }
+      .achieve-table td{ font-size:.78rem; }
+    }
   </style>
 </head>
 <body>
@@ -52,54 +158,126 @@
     </header>
 
     <main class="main-content">
-      <h2>Featured Projects</h2>
+      <h2>Projects</h2>
 
-      <section class="cards">
-        <article class="card clickable">
-      
-          <h3>Autonomous Rescue Robot</h3>
-          <p class="highlight">Asia-Pacific Robotics Champion</p>
-          <p>
-            Designed and programmed a robot capable of navigating obstacle courses and performing rescue tasks. Led a team to win the Asia-Pacific Robotics Championship, focusing on teamwork, innovation, and real-world problem solving.
+      <section class="hero-mix" style="margin-bottom:2rem;">
+        <div class="hero-image">
+          <img src="images/z2.jpg"
+               alt="Projects banner"
+               class="hero-main-image"
+               style="height:100%;width:480px;object-fit:cover;"
+               loading="eager">
+        </div>
+        <div class="hero-text">
+          <h1 style="margin:0 0 .4rem;">Solving Problems and Building for Impact</h1>
+          <p style="margin-top:.3rem;">
+            This page highlights selected projects spanning robotics, software, sustainability, and STEM research. Each project reflects initiative, collaboration, and a drive to turn ideas into tangible results.
           </p>
-        </article>
-
-        <article class="card clickable">
-          <!-- 整卡点击：Study Buddy App -->
-          
-          <!-- 已移除图片占位 -->
-          <h3>Study Buddy App</h3>
-          <p class="highlight">Personal Project</p>
-          <p>
-            Developed a cross-platform mobile app to help students manage assignments, set study goals, and collaborate with peers. The app features a clean UI and helps students stay organized and motivated.
+          <p style="margin-top:.6rem;font-size:.92rem;color:#555;">
+            Structured sections below: quick project milestones, timeline, and a detailed data table.
           </p>
-        </article>
-
-        <article class="card clickable">
-          <!-- 整卡点击：Eco-School Initiative -->
-         
-          <!-- 已移除图片占位 -->
-          <h3>Eco-School Initiative</h3>
-          <p class="highlight">Community Leadership</p>
-          <p>
-            Launched an eco-friendly program at school to reduce plastic waste. Organized recycling drives, workshops, and awareness campaigns, engaging students and teachers to create a greener campus.
-          </p>
-        </article>
-
-        <article class="card clickable">
-          <!-- 整卡点击：Mathematical Research Paper -->
-       
-          <!-- 已移除图片占位 -->
-          <h3>Mathematical Research Paper</h3>
-          <p class="highlight">STEM Exploration</p>
-          <p>
-            Authored a research paper on number theory, exploring advanced problem-solving strategies used in mathematics olympiads. Presented findings at a school symposium and mentored junior students.
-          </p>
-        </article>
+        </div>
       </section>
 
-      <p style="text-align:center; color:#888; margin-top:1.5rem;">
-        <!--* 点击任意卡片进入详情页（你可在对应 HTML 文件中自行补充内容）。-->
+      <!-- Quick project snapshot (optional; timeline below) -->
+      <!-- Timeline -->
+      <section aria-labelledby="timeline-title">
+        <h2 id="timeline-title" style="margin-top:.2rem;">Project Timeline</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h4>2022 · Autonomous Rescue Robot</h4>
+            <p>Led a team to design and program a robot for real-world rescue scenarios – Asia-Pacific Robotics Champion.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>2022 · Eco-School Initiative</h4>
+            <p>Organized a school-wide campaign to reduce plastic waste and promote sustainability.</p>
+          </div>
+          <div class="timeline-item">
+            <h4>2021 · Mathematical Research Paper</h4>
+            <p>Authored and presented a research paper on advanced problem-solving in mathematics olympiads.</p>
+          </div>
+        </div>
+        <p class="legend">* Timeline order reflects project initiation or major milestone.</p>
+      </section>
+
+      <hr>
+
+      <!-- Detailed Data Table for Projects -->
+      <section class="achieve-wrap" aria-labelledby="detail-title">
+        <h2 id="detail-title" style="margin-top:.2rem;">Detailed Project Record</h2>
+        <div class="table-scroller" role="region" aria-label="Scrollable projects table">
+          <table class="achieve-table">
+            <caption>Robotics · Software · Sustainability · Research</caption>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Short</th>
+                <th>Project Title</th>
+                <th>Role</th>
+                <th>Date / Period</th>
+                <th>Highlights</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Autonomous Rescue Robot -->
+              <tr>
+                <td class="nowrap"><span class="badge">STEM</span>Robotics</td>
+                <td>RescueBot</td>
+                <td><strong>Autonomous Rescue Robot</strong></td>
+                <td>Team Leader & Programmer</td>
+                <td class="nowrap">2022</td>
+                <td>Asia-Pacific Champion</td>
+                <td>Designed and programmed a robot to navigate obstacle courses and perform simulated rescue tasks. Led algorithm design and team coordination.</td>
+              </tr>
+             <!-- Eco-School Initiative -->
+              <tr>
+                <td class="nowrap"><span class="badge">SUST</span>Community</td>
+                <td>Eco-School</td>
+                <td>Eco-School Initiative</td>
+                <td>Organizer</td>
+                <td>2022</td>
+                <td>School-wide Impact</td>
+                <td>Launched an eco-friendly program to reduce plastic waste, led recycling drives, and promoted environmental awareness across the campus.</td>
+              </tr>
+              <!-- Mathematical Research Paper -->
+              <tr>
+                <td class="nowrap"><span class="badge">RESEARCH</span>Math</td>
+                <td>MathPaper</td>
+                <td>Mathematical Research Paper</td>
+                <td>Author & Presenter</td>
+                <td>2021</td>
+                <td>Presented at Symposium</td>
+                <td>Explored advanced number theory and olympiad problem-solving; mentored younger students and shared findings at school events.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin:.8rem 0 0;font-size:.75rem;color:#777;">
+          Note: This table summarizes featured projects. More technical or collaborative details can be appended by request.
+        </p>
+      </section>
+
+      <hr>
+
+      <!-- Tags -->
+      <section aria-labelledby="tags-title">
+        <h2 id="tags-title" style="margin-top:.2rem;">Project Domains & Skills</h2>
+        <p>
+          <span class="tag">Robotics</span>
+          <span class="tag">Algorithm Design</span>
+          <span class="tag">Sustainability</span>
+          <span class="tag">Community Leadership</span>
+          <span class="tag">STEM</span>
+          <span class="tag">Research</span>
+          <span class="tag">Teamwork</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">Problem Solving</span>
+        </p>
+      </section>
+
+      <p style="text-align:center;color:#888;margin-top:1.6rem;">
+        * Placeholder hero image — replace with a real photo for best presentation.
       </p>
     </main>
   </div>

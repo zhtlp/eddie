@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Eddie Zhang</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* 整卡可点击的样式与可用性 */
+    .card.clickable {
+      position: relative;
+      cursor: pointer;
+      transition: transform .08s ease, box-shadow .2s ease;
+    }
+    .card.clickable:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+    .card.clickable:active {
+      transform: translateY(-1px);
+    }
+    /* 覆盖全卡片的链接区域（可键盘聚焦） */
+    .stretched-link {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: inherit; /* 若卡片有圆角则保持一致 */
+      text-indent: -9999px;   /* 隐藏可视文本，仍保留可访问性（依赖 aria-label） */
+      overflow: hidden;
+    }
+    .stretched-link:focus-visible {
+      outline: 3px solid #A31F34;
+      outline-offset: 3px;
+    }
+    /* 可选：标题在可点击卡片中保持本来视觉风格 */
+    .card h3, .card .highlight { margin-top: 0.4rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="navbar">
+      <h1 class="site-title">Eddie Zhang</h1>
+      <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="certificates.html">Certificates</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <h2>Featured Projects</h2>
+
+      <section class="cards">
+        <article class="card clickable">
+      
+          <h3>Autonomous Rescue Robot</h3>
+          <p class="highlight">Asia-Pacific Robotics Champion</p>
+          <p>
+            Designed and programmed a robot capable of navigating obstacle courses and performing rescue tasks. Led a team to win the Asia-Pacific Robotics Championship, focusing on teamwork, innovation, and real-world problem solving.
+          </p>
+        </article>
+
+        <article class="card clickable">
+          <!-- 整卡点击：Study Buddy App -->
+          
+          <!-- 已移除图片占位 -->
+          <h3>Study Buddy App</h3>
+          <p class="highlight">Personal Project</p>
+          <p>
+            Developed a cross-platform mobile app to help students manage assignments, set study goals, and collaborate with peers. The app features a clean UI and helps students stay organized and motivated.
+          </p>
+        </article>
+
+        <article class="card clickable">
+          <!-- 整卡点击：Eco-School Initiative -->
+         
+          <!-- 已移除图片占位 -->
+          <h3>Eco-School Initiative</h3>
+          <p class="highlight">Community Leadership</p>
+          <p>
+            Launched an eco-friendly program at school to reduce plastic waste. Organized recycling drives, workshops, and awareness campaigns, engaging students and teachers to create a greener campus.
+          </p>
+        </article>
+
+        <article class="card clickable">
+          <!-- 整卡点击：Mathematical Research Paper -->
+       
+          <!-- 已移除图片占位 -->
+          <h3>Mathematical Research Paper</h3>
+          <p class="highlight">STEM Exploration</p>
+          <p>
+            Authored a research paper on number theory, exploring advanced problem-solving strategies used in mathematics olympiads. Presented findings at a school symposium and mentored junior students.
+          </p>
+        </article>
+      </section>
+
+      <p style="text-align:center; color:#888; margin-top:1.5rem;">
+        <!--* 点击任意卡片进入详情页（你可在对应 HTML 文件中自行补充内容）。-->
+      </p>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
