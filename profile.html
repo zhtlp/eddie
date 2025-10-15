@@ -2,193 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Achievements - Eddie Zhang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Eddie Zhang</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Page‑specific styles */
-    .hero-main-image{
-      border-radius:0 !important;
-      box-shadow:0 8px 18px rgba(0,0,0,0.12),0 2px 4px rgba(0,0,0,0.08);
-      transition:box-shadow .25s ease,transform .25s ease;
-      background:#fff;
-      display:block;
-      max-width:100%;
-      height:auto;
-      width:480px;
+    /* Hero image (same styling as home) */
+    .hero-main-image {
+      border-radius: 0 !important;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      transition: box-shadow .25s ease, transform .25s ease;
+      background: #fff;
     }
-    .hero-main-image:hover{
-      transform:translateY(-2px);
-      box-shadow:0 12px 28px rgba(0,0,0,0.16),0 4px 10px rgba(0,0,0,0.10);
+    .hero-main-image:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.16), 0 4px 10px rgba(0,0,0,0.10);
     }
-    .hero-main-image:focus-visible{
-      outline:3px solid var(--brand);
-      outline-offset:2px;
+    .hero-main-image:focus-visible {
+      outline: 3px solid #A31F34;
+      outline-offset: 2px;
     }
-    @media (prefers-reduced-motion:reduce){
-      .hero-main-image{transition:none}
-      .hero-main-image:hover{transform:none;box-shadow:0 8px 18px rgba(0,0,0,0.12),0 2px 4px rgba(0,0,0,0.08);}
+    @media (prefers-reduced-motion: reduce) {
+      .hero-main-image { transition: none; }
+      .hero-main-image:hover {
+        transform: none;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
     }
 
-    /* Responsive image for mobile & tablet */
-    @media (max-width:1024px){
-      .hero-main-image{
-        width:100%;
-        max-width:480px;
-        height:auto;
-      }
-      .hero-image{
-        width:100%;
-        max-width:480px;
-        margin:auto;
-      }
+    /* Portrait photo wall */
+    .photo-section h2 { margin-top: 0; }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0;                /* Seamless mosaic */
+      background: #000;       /* Avoid faint seams on high‑dpi */
     }
-    @media (max-width:700px){
-      .hero-main-image{
-        width:100%;
-        max-width:100%;
-        height:auto;
-      }
-      .hero-image{
-        width:100%;
-        max-width:100%;
-        margin:auto;
-      }
-      .hero-mix{
-        flex-direction:column;
-        align-items:stretch;
-      }
-      .hero-text{
-        margin-top:1rem;
-      }
+    .photo-grid a.photo {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 0;
+      background: #000;
+      cursor: zoom-in;
+      transition: transform .08s ease;
     }
-    .hero-mix{
-      display:flex;
-      align-items:center;
-      gap:2.2rem;
-      flex-wrap:wrap;
+    .photo-grid a.photo:hover {
+      transform: translateY(-2px);
     }
-    .hero-image{
-      flex:0 0 auto;
+    .photo-grid a.photo:focus-visible {
+      outline: 3px solid #A31F34;
+      outline-offset: -3px;
     }
-    .hero-text{
-      flex:1 1 0;
-      min-width:220px;
+    .photo-grid img {
+      width: 100%;
+      height: 100%;
+      /* Portrait aspect ratio (width : height) */
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: filter .25s;
+    }
+    .photo-grid a.photo:hover img {
+      filter: brightness(1.05) contrast(1.05);
     }
 
-    /* Achievements table */
-    .achieve-wrap{ margin-top:1.2rem; }
-    .table-scroller{ overflow-x:auto; border-radius:12px; }
-    .achieve-table{
-      width:100%;
-      border-collapse:collapse;
-      font-size:0.94rem;
-      line-height:1.45;
-      background:#fff;
-      border:1px solid #ececec;
-      border-radius:12px;
-      overflow:hidden;
-      box-shadow:0 4px 14px rgba(0,0,0,0.05);
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: zoom-out;
+      padding: 4vmin;
     }
-    .achieve-table caption{
-      font-weight:700;
-      padding:.9rem 1rem;
-      text-align:left;
-      background:linear-gradient(90deg,#fff,var(--bg-soft));
-      font-size:1.02rem;
-      color:var(--brand);
-    }
-    .achieve-table th,
-    .achieve-table td{
-      padding:.65rem .75rem;
-      vertical-align:top;
-      border-top:1px solid #f0f0f0;
-    }
-    .achieve-table th{
-      background:#faf7f8;
-      font-weight:600;
-      text-align:left;
-      font-size:.72rem;
-      letter-spacing:.55px;
-      text-transform:uppercase;
-      color:#555;
-    }
-    .achieve-table tbody tr:hover td{
-      background:#fff8f9;
-    }
-    .achieve-table td strong{ color:var(--brand); font-weight:600; }
-    .badge{
-      display:inline-block;
-      padding:.18rem .55rem .24rem;
-      border-radius:999px;
-      background:var(--brand);
-      color:#fff;
-      font-size:.64rem;
-      font-weight:600;
-      letter-spacing:.5px;
-      vertical-align:middle;
-      margin-right:.35rem;
-      white-space:nowrap;
-    }
-    .tag{
-      display:inline-block;
-      padding:.22rem .6rem .28rem;
-      background:#f5e9eb;
-      color:var(--brand);
-      border-radius:6px;
-      font-size:.68rem;
-      font-weight:600;
-      letter-spacing:.3px;
-      margin:.18rem .25rem .18rem 0;
-    }
-    .nowrap{ white-space:nowrap; }
-
-    /* Timeline summary */
-    .timeline{
-      position:relative;
-      margin:2rem 0 1.2rem;
-      padding-left:1.1rem;
-      border-left:3px solid #f1d5d9;
-    }
-    .timeline-item{
-      margin:0 0 1.05rem;
-      position:relative;
-    }
-    .timeline-item::before{
-      content:"";
-      position:absolute;
-      width:14px;height:14px;
-      background:var(--brand);
-      border:3px solid #fff;
-      box-shadow:0 0 0 2px #f1d5d9;
-      border-radius:50%;
-      left:-1.52rem; top:.18rem;
-    }
-    .timeline-item h4{
-      margin:.1rem 0 .35rem;
-      font-size:1rem;
-      color:var(--brand);
-    }
-    .timeline-item p{
-      margin:.15rem 0;
-      font-size:.85rem;
-      color:#555;
-    }
-    .legend{
-      text-align:right;
-      font-size:.68rem;
-      color:#777;
-      margin:.4rem 0 -.2rem;
-      letter-spacing:.45px;
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 8px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.55);
     }
 
-    @media (max-width:880px){
-      .achieve-table{ font-size:.86rem; }
-      .achieve-table th,.achieve-table td{ padding:.55rem .55rem; }
-    }
-    @media (max-width:640px){
-      .achieve-table th{ font-size:.58rem; }
-      .achieve-table td{ font-size:.78rem; }
+    @media (max-width: 640px){
+      .photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      }
     }
   </style>
 </head>
@@ -199,201 +101,125 @@
       <p class="site-subtitle">A journey of resilience, brilliance, and boundless curiosity.</p>
       <nav class="nav">
         <a href="index.html">Home</a>
-        <a href="profile.html">Profile</a>
-        <a href="achievements.html" class="active">Achievements</a>
+        <a href="profile.html" class="active">Profile</a>
+        <a href="achievements.html">Achievements</a>
         <a href="certificates.html">Certificates</a>
         <a href="contact.html">Contact</a>
       </nav>
     </header>
 
     <main class="main-content">
-      <h2>Achievements</h2>
-
-      <section class="hero-mix" style="margin-bottom:2rem;">
+      <h2>About Me</h2>
+      <div class="hero-mix">
         <div class="hero-image">
-          <img src="images/z1.jpg"
-               alt="Awards and trophies banner"
-               class="hero-main-image"
-               loading="eager"
-               style="object-fit:cover;">
+          <img
+            src="images/z1.jpg"
+            alt="Portrait of Eddie Zhang"
+            class="hero-main-image"
+            style="max-width:420px; max-height:550px; width:auto; height:auto;"
+          />
         </div>
         <div class="hero-text">
-          <h1 style="margin:0 0 .4rem;">Pursuing Excellence Through Diverse Endeavors</h1>
-          <p style="margin-top:.3rem;">
-            This page highlights key milestones across academics, economics, robotics, athletics, leadership, and the arts. Each entry reflects persistence, curiosity, teamwork, and continuous improvement.
+          <p>
+            Hi! I’m Eddie Zhang, a passionate learner and active explorer. From my earliest days I’ve been driven by curiosity and a desire to understand how the world works—through science, sports, creativity, and global experiences. I believe in challenging myself, learning from setbacks, and contributing positively to others.
           </p>
-          <p style="margin-top:.6rem;font-size:.92rem;color:#555;">
-            Structured sections below: quick domain snapshot, timeline, and a detailed data table.
-          </p>
+          <ul class="info-list">
+            <li><strong>Birthday</strong><span>September 11, 2007</span></li>
+            <li><strong>Nationality</strong><span>Chinese</span></li>
+            <li><strong>Languages</strong><span>English (Fluent)<br>Mandarin Chinese (Native)<br>Spanish (Elementary)<br>Japanese (Self‑taught)</span></li>
+            <li><strong>Current School</strong><span>International Leadership of Texas Qingdao No.9 High School Dual Diploma Program</span></li>
+          </ul>
         </div>
-      </section>
-
-      <!-- Quick domain snapshot -->
-      <!-- Timeline -->
-      <section aria-labelledby="timeline-title">
-        <h2 id="timeline-title" style="margin-top:.2rem;">Timeline Summary</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <h4>2024 · National Economics Challenge (NEC)</h4>
-            <p>Pre Division Smart Mode – Qualifying Test Top Scoring Challenger & Bronze Medal.</p>
-          </div>
-            <div class="timeline-item">
-              <h4>2022 · RoboCup Asia-Pacific (CoSpace Rescue FirstSteps U19)</h4>
-              <p>1st Place – Team Captain; responsible for path planning logic and state machine design.</p>
-            </div>
-          <div class="timeline-item">
-            <h4>2022 · CBA Youth National Challenge (Qingdao Division)</h4>
-            <p>Runner-Up finish in a high-intensity national youth competition.</p>
-          </div>
-          <div class="timeline-item">
-            <h4>2021–2022 · NYBO Youth Basketball Open (Qingdao Division, U14)</h4>
-            <p>Champion and Rebounding Leader; instrumental in both transition defense and board control.</p>
-          </div>
-          <div class="timeline-item">
-            <h4>— · Outstanding Student (District Recognition)</h4>
-            <p>Honored for balanced excellence in scholarship, service, leadership, and character.</p>
-          </div>
-          <div class="timeline-item">
-            <h4>— · Tuba Performance – Level 10 Certification</h4>
-            <p>Demonstrated advanced musicianship and performance readiness.</p>
-          </div>
-        </div>
-        <p class="legend">* Dashes indicate recognition with year not yet formally published or generalized across a range.</p>
-      </section>
+      </div>
 
       <hr>
 
-      <!-- Detailed Data Table -->
-      <section class="achieve-wrap" aria-labelledby="detail-title">
-        <h2 id="detail-title" style="margin-top:.2rem;">Detailed Achievement Record</h2>
-        <div class="table-scroller" role="region" aria-label="Scrollable achievements table">
-          <table class="achieve-table">
-            <caption>Academic · STEM · Athletics · Leadership · Arts</caption>
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Short</th>
-                <th>Full Title / Event</th>
-                <th>Organizer</th>
-                <th>Date / Period</th>
-                <th>Award</th>
-                <th>Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- NEC -->
-              <tr>
-                <td class="nowrap">
-                  <span class="badge">ACAD</span>Economics
-                </td>
-                <td>NEC</td>
-                <td><strong>National Economics Challenge (Pre Division)</strong></td>
-                <td>Council for Economic Education (CEE)</td>
-                <td class="nowrap">2024‑03‑22 → 2024‑03‑24</td>
-                <td>Top Scoring Challenger; Bronze Medal</td>
-                <td>Comprehensive micro, macro, international, and current issues analysis.</td>
-              </tr>
-
-              <!-- NYBO Champion -->
-              <tr>
-                <td class="nowrap"><span class="badge">SPORT</span>Basketball</td>
-                <td>NYBO</td>
-                <td>2021–2022 NYBO Youth Basketball Open (Qingdao Division, U14)</td>
-                <td>Local Education & Sports Authorities</td>
-                <td>2021–2022 Season</td>
-                <td>Champion; Rebounding Leader</td>
-                <td>Key leadership in transition play and defensive glass control.</td>
-              </tr>
-
-              <!-- City Students Basketball Runner-Up -->
-              <tr>
-                <td><span class="badge">SPORT</span>Basketball</td>
-                <td>City Cup</td>
-                <td>2022 Qingdao Primary & Secondary Students Basketball Tournament</td>
-                <td>Municipal Education & Sports Departments</td>
-                <td>2022 (Awarded 2023‑05‑01)</td>
-                <td>1st place in the district;<br>2nd place in the city  </td>
-                <td>Strong tactical execution and cohesive teamwork.</td>
-              </tr>
-
-              <!-- CBA Youth -->
-              <tr>
-                <td><span class="badge">SPORT</span>Basketball</td>
-                <td>CBA Youth</td>
-                <td>2022 CBA Youth National Challenge (Qingdao Division)</td>
-                <td>CBA Youth Sports Co.</td>
-                <td>2022‑07‑01</td>
-                <td>Runner-Up</td>
-                <td>Maintained consistent shooting efficiency under pressure.</td>
-              </tr>
-
-              <!-- RoboCup Asia-Pacific -->
-              <tr>
-                <td><span class="badge">STEM</span>Robotics</td>
-                <td>RCAP</td>
-                <td>RoboCup Asia-Pacific 2022 – CoSpace Rescue FirstSteps (U19)</td>
-                <td>RoboCup Asia-Pacific Committee</td>
-                <td>2022</td>
-                <td>1st Place</td>
-                <td>Team Captain; led algorithm design and iterative testing.</td>
-              </tr>
-
-              <!-- Outstanding Student -->
-              <tr>
-                <td><span class="badge">LEAD</span>Leadership</td>
-                <td>—</td>
-                <td>Outstanding Student (District Recognition)</td>
-                <td>District Education & Sports Bureau</td>
-                <td>2021-2022</td>
-                <td>Honor Title</td>
-                <td>Holistic performance across academics, conduct, service, and activity.</td>
-              </tr>
-
-              <!-- Tuba Level 10 -->
-              <tr>
-                <td><span class="badge">ARTS</span>Music</td>
-                <td>—</td>
-                <td>Tuba Performance Level 10 Certification</td>
-                <td>Provincial Student Arts Examination Office</td>
-                <td>2021</td>
-                <td>Passed</td>
-                <td>Evidence of sustained musical training and stage readiness.</td>
-              </tr>
-            </tbody>
-          </table>
+      <!-- Portrait Photo Gallery -->
+      <section class="photo-section">
+        <h2>Photo Gallery</h2>
+        <div class="photo-grid">
+          <a class="photo" href="#" data-full="profile/p1.jpg" aria-label="Open photo 1">
+            <img src="profile/p1.jpg" alt="Gallery image 1" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="profile/p2.jpg" aria-label="Open photo 2">
+            <img src="profile/p2.jpg" alt="Gallery image 2" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="profile/p3.jpg" aria-label="Open photo 3">
+            <img src="profile/p3.jpg" alt="Gallery image 3" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="profile/p4.jpg" aria-label="Open photo 4">
+            <img src="profile/p4.jpg" alt="Gallery image 4" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="profile/p5.jpg" aria-label="Open photo 5">
+            <img src="profile/p5.jpg" alt="Gallery image 5" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="profile/p6.jpg" aria-label="Open photo 6">
+            <img src="profile/p6.jpg" alt="Gallery image 6" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="profile/p7.jpg" aria-label="Open photo 7">
+            <img src="profile/p7.jpg" alt="Gallery image 7" loading="lazy">
+          </a>
+          <a class="photo" href="#" data-full="profile/p8.jpg" aria-label="Open photo 8">
+            <img src="profile/p8.jpg" alt="Gallery image 8" loading="lazy">
+          </a>
+            <a class="photo" href="#" data-full="profile/p9.jpg" aria-label="Open photo 9">
+            <img src="profile/p9.jpg" alt="Gallery image 9" loading="lazy">
+          </a>
+            <a class="photo" href="#" data-full="profile/p10.jpg" aria-label="Open photo 10">
+            <img src="profile/p10.jpg" alt="Gallery image 10" loading="lazy">
+          </a>
         </div>
-        <p style="margin:.8rem 0 0;font-size:.75rem;color:#777;">
-          Note: Dashes indicate a season span or a date not specified on the public certificate. Additional document IDs can be appended later.
+        <p style="text-align:center; color:#888; margin-top:1rem;">
+          Tip: Click a thumbnail to view it larger. Click again (or press Esc) to close.
         </p>
       </section>
-
-      <hr>
-
-      <!-- Tags -->
-      <section aria-labelledby="tags-title">
-        <h2 id="tags-title" style="margin-top:.2rem;">Domains & Competencies</h2>
-        <p>
-          <span class="tag">Economics</span>
-          <span class="tag">Robotics</span>
-          <span class="tag">Algorithm Design</span>
-          <span class="tag">Basketball</span>
-          <span class="tag">Leadership</span>
-          <span class="tag">Team Strategy</span>
-            <span class="tag">STEM</span>
-          <span class="tag">Music</span>
-          <span class="tag">Resilience</span>
-          <span class="tag">Problem Solving</span>
-        </p>
-      </section>
-
     </main>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image preview">
+    <img id="lightboxImg" alt="">
   </div>
 
   <footer class="footer">
     <p>&copy; <span id="year"></span> Eddie Zhang. All rights reserved.</p>
   </footer>
+
   <script>
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple Lightbox
+    (function () {
+      const grid = document.querySelector('.photo-grid');
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightboxImg');
+      if (!grid || !lightbox || !img) return;
+
+      grid.addEventListener('click', function (e) {
+        const link = e.target.closest('a.photo');
+        if (!link) return;
+        e.preventDefault();
+        const full = link.getAttribute('data-full');
+        const alt = link.querySelector('img')?.getAttribute('alt') || 'Photo';
+        if (!full) return;
+        img.src = full;
+        img.alt = alt;
+        lightbox.classList.add('open');
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        setTimeout(() => { img.src = ''; }, 140);
+      }
+
+      lightbox.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+          closeLightbox();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
